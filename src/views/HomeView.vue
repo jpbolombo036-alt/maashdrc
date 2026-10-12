@@ -11,13 +11,13 @@ const chiffres = [
 ]
 
 const heroSlides = [
-  '/accueil.png',
-  '/consultation.png',
-  '/distribution.png',
-  '/echange.png',
-  '/soutien.png',
-  '/retraite.png',
-  '/famille.png',
+  '/accueil.jpg',
+  '/consultation.jpg',
+  '/distribution.jpg',
+  '/echange.jpg',
+  '/soutien.jpg',
+  '/retraite.jpg',
+  '/famille.jpg',
 ]
 const heroSlideIndex = ref(0)
 let heroSlideTimer
