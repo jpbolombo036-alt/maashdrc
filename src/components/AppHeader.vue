@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { maash } from '../data/maashData'
+import AppIcon from '../components/AppIcon.vue'
 
 const menuOpen = ref(false)
 
@@ -25,6 +26,55 @@ function toggleTheme() {
   document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light'
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
 }
+
+const langOpen = ref(false)
+const currentLang = ref('fr')
+
+const langOptions = [
+  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
+  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦' },
+]
+
+function readTranslateCookie() {
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/)
+  if (!m || !m[1]) return 'fr'
+  const parts = m[1].split('/')
+  return parts[2] || 'fr'
+}
+
+function toggleLangMenu() {
+  langOpen.value = !langOpen.value
+}
+
+function closeLangMenu(e) {
+  if (!e.target.closest || !e.target.closest('.lang-switcher')) {
+    langOpen.value = false
+  }
+}
+
+function setLang(code) {
+  langOpen.value = false
+  const far = 'Thu, 31 Dec 2099 23:59:59 GMT'
+  const domains = ['', location.hostname, '.' + location.hostname]
+  const toFrench = code === 'fr'
+  for (const d of domains) {
+    const attr = d ? '; domain=' + d : ''
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + attr
+    if (!toFrench) {
+      document.cookie = 'googtrans=/fr/' + code + '; expires=' + far + '; path=/' + attr
+    }
+  }
+  location.reload()
+}
+
+currentLang.value = readTranslateCookie()
+
+onMounted(() => document.addEventListener('click', closeLangMenu))
+onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 </script>
 
 <template>
@@ -104,6 +154,33 @@ function toggleTheme() {
             />
           </svg>
         </button>
+
+        <div class="lang-switcher">
+          <button
+            class="theme-toggle lang-btn"
+            type="button"
+            aria-label="Choisir la langue"
+            :aria-expanded="langOpen"
+            title="Langue"
+            @click.stop="toggleLangMenu"
+          >
+            <AppIcon name="globe" />
+          </button>
+          <div v-if="langOpen" class="lang-menu" role="menu">
+            <button
+              v-for="l in langOptions"
+              :key="l.code"
+              type="button"
+              role="menuitem"
+              class="lang-item"
+              :class="{ active: l.code === currentLang }"
+              @click="setLang(l.code)"
+            >
+              <span class="lang-flag" aria-hidden="true">{{ l.flag }}</span>
+              {{ l.label }}
+            </button>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -258,6 +335,72 @@ function toggleTheme() {
     margin-left: 0;
     margin-top: 0.5rem;
     align-self: flex-start;
+  }
+}
+
+.lang-switcher {
+  position: relative;
+  margin-left: 0.5rem;
+}
+
+.lang-switcher .theme-toggle {
+  margin-left: 0;
+}
+
+.lang-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 175px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 0.35rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.lang-item:hover {
+  background: var(--green-50);
+}
+
+.lang-item.active {
+  background: var(--green-100);
+  color: var(--green-800);
+  font-weight: 600;
+}
+
+.lang-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+@media (max-width: 960px) {
+  .lang-switcher {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .lang-menu {
+    left: 0;
+    right: auto;
   }
 }
 </style>
