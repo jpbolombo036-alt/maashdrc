@@ -15,6 +15,9 @@ const heroSlides = [
   '/consultation.png',
   '/distribution.png',
   '/echange.png',
+  '/soutien.png',
+  '/retraite.png',
+  '/famille.png',
 ]
 const heroSlideIndex = ref(0)
 let heroSlideTimer
