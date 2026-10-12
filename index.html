@@ -17,11 +17,10 @@
       rel="stylesheet"
     />
     <script>
-      // Applique le thème enregistré (ou la préférence système) avant le premier rendu
+      // Par défaut : mode clair. Le mode sombre ne s'applique que si l'utilisateur l'a choisi.
       ;(function () {
         try {
-          var t = localStorage.getItem('theme')
-          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark')
           }
         } catch (e) {}
