@@ -17,6 +17,14 @@ const links = [
 function closeMenu() {
   menuOpen.value = false
 }
+
+const isDark = ref(document.documentElement.dataset.theme === 'dark')
+
+function toggleTheme() {
+  isDark.value = !isDark.value
+  document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light'
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+}
 </script>
 
 <template>
@@ -59,6 +67,43 @@ function closeMenu() {
         <a :href="maash.whatsappHref" class="btn btn-outline nav-cta" target="_blank" rel="noopener">
           WhatsApp
         </a>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          :aria-label="isDark ? 'Passer en mode clair' : 'Passer en mode sombre'"
+          :aria-pressed="isDark"
+          :title="isDark ? 'Mode clair' : 'Mode sombre'"
+          @click="toggleTheme"
+        >
+          <svg
+            v-if="!isDark"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg
+            v-else
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4.5" />
+            <path
+              d="M12 1.5v2.5M12 20v2.5M4.57 4.57l1.77 1.77M17.66 17.66l1.77 1.77M1.5 12H4M20 12h2.5M4.57 19.43l1.77-1.77M17.66 6.34l1.77-1.77"
+            />
+          </svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -178,6 +223,41 @@ function closeMenu() {
   .nav-cta {
     margin-left: 0;
     margin-top: 0.5rem;
+  }
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--green-800);
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 960px) {
+  .theme-toggle {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    align-self: flex-start;
   }
 }
 </style>
