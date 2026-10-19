@@ -216,6 +216,16 @@ export default {
     ],
   },
 
+  recrutement: {
+    postes: [
+      { code: 'agent-at', nom: 'AT agent (field agent)' },
+      { code: 'chef-equipe', nom: 'Team leader' },
+      { code: 'superviseur', nom: 'Supervisor' },
+      { code: 'encodeur', nom: 'Encoder' },
+      { code: 'spontanee', nom: 'Spontaneous application' },
+    ],
+  },
+
   ui: {
     meta: {
       accueil: {
@@ -253,6 +263,11 @@ export default {
         description:
           'Contact MAASH: head office address in Ngaliema (Kinshasa), phones, WhatsApp, emails and opening hours.',
       },
+      recrutement: {
+        title: 'Careers — MAASH',
+        description:
+          'Open positions at MAASH: field agent, team leader, supervisor… apply online and send your CV.',
+      },
       introuvable: {
         title: 'Page not found — MAASH',
         description: 'The requested page does not exist or has been moved.',
@@ -269,6 +284,7 @@ export default {
       contact: 'Contact',
       join: 'Join',
       login: 'Log in',
+      recrutement: 'Careers',
     },
     burger: { open: 'Open menu' },
     theme: {
@@ -419,6 +435,48 @@ export default {
         'Current coverage: Tshangu, Mont-Amba, Funa and Lukunga districts in Kinshasa. Rollout planned in the 24 communes of Kinshasa.',
       domainNote:
         'Planned official domain: {domaine} — availability and reservation to be checked. Map link: to be completed.',
+    },
+
+    recrutement: {
+      h1: 'Join MAASH',
+      hero: 'Do you share our values? Join MAASH and help protect Congolese people, in the field and at head office.',
+      postesBadge: 'Open positions',
+      postesTitle: 'Join our teams',
+      postesText:
+        'The positions below match the PROSOC programme roles. No matching profile? Apply spontaneously.',
+      formBadge: 'Application',
+      formTitle: 'Application form',
+      nom: 'Full name',
+      tel: 'Phone (e.g. +243…)',
+      email: 'Email address',
+      poste: 'Position',
+      diplome: 'Education level',
+      experience: 'Years of experience',
+      expPlaceholder: 'E.g. 3 years',
+      disponibilite: 'Availability',
+      message: 'Message (optional)',
+      cvNote: 'Your CV: send it to the secretariat via WhatsApp after submitting the form (button below).',
+      consentLabel: 'I agree that my data may be used solely for MAASH recruitment.',
+      notePrivacy:
+        'Your information is used exclusively for the MAASH recruitment process and is not shared with third parties.',
+      submit: 'Send my application',
+      sending: 'Sending…',
+      againBtn: 'New application',
+      errRequired: 'Please fill in all required fields.',
+      errEmail: 'Invalid email address.',
+      errTel: 'Invalid phone number.',
+      errConsent: 'Please accept the use of your data.',
+      errSend:
+        'Sending failed. Please try again or send your CV directly via WhatsApp (button below).',
+      successTitle: 'Application sent!',
+      successText:
+        'Thank you. Your application has been forwarded to the MAASH secretariat — now send your CV via WhatsApp, and we will contact you very soon.',
+      whatsappCta: 'Send via WhatsApp',
+      recruitBadge: 'Recruitment',
+      recruitTitle: 'We are hiring',
+      recruitText:
+        'Opportunities at MAASH: field agents, team leaders and more. Check the open positions and apply online.',
+      recruitCta: 'See open positions',
     },
 
     notFound: {

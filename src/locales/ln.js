@@ -217,6 +217,16 @@ export default {
     ],
   },
 
+  recrutement: {
+    postes: [
+      { code: 'agent-at', nom: 'Agent ya AT (agent ya bokambi)' },
+      { code: 'chef-equipe', nom: 'Chef ya ekipi' },
+      { code: 'superviseur', nom: 'Mokanisi' },
+      { code: 'encodeur', nom: 'Encodeur' },
+      { code: 'spontanee', nom: 'Yokilema spontanément' },
+    ],
+  },
+
   ui: {
     meta: {
       accueil: {
@@ -254,6 +264,11 @@ export default {
         description:
           'Koyokana na MAASH: bikalo na Ngaliema (Kinshasa), telefoni, WhatsApp, mails na saa ya koyoka.',
       },
+      recrutement: {
+        title: 'Rekrutman — MAASH',
+        description:
+          'Banakisi bazali na molayi na MAASH: agent ya bokambi, chef ya ekipi, mokanisi… yosekola na internet na tinda CV na yo.',
+      },
       introuvable: {
         title: 'Page elabami te — MAASH',
         description: 'Page oyo osaki elelami te, oyo ekotindami.',
@@ -270,6 +285,7 @@ export default {
       contact: 'Koyokana',
       join: 'Koyana',
       login: 'Login',
+      recrutement: 'Rekrutman',
     },
     burger: { open: 'Bukisa menu' },
     theme: {
@@ -419,6 +435,48 @@ export default {
         'Kobatamiwe na lelo: distriki ya Tshangu, Mont-Amba, Funa na Lukunga na Kinshasa. Etikali ya kobimba na komun 24 ya Kinshasa.',
       domainNote:
         'Domaine ofisiel etikali: {domaine} — koyeba na kolanda. Lisalisi ya carte: kotindwa.',
+    },
+
+    recrutement: {
+      h1: 'Yana na MAASH',
+      hero: 'Oyokani na mibeko ya biso? Yana na MAASH okendekeza na kobatela ba Kongolesi, na bokambi na bikalo bya bokonzi.',
+      postesBadge: 'Banakisi bazali na molayi',
+      postesTitle: 'Yana na bango biso',
+      postesText:
+        'Banakisi bano bazali na bikolo bwa programme ya PROSOC. Olabaki profil na yo? Yokilema te na yosekola.',
+      formBadge: 'Bokoyani',
+      formTitle: 'Fomu ya koyebisa',
+      nom: 'Kombo na bomoko',
+      tel: 'Telefoni',
+      email: 'Mail',
+      poste: 'Maboko oyo oyekaki',
+      diplome: 'Sanza ya bino',
+      experience: 'Mibe ya sili',
+      expPlaceholder: 'Ex. : mibe 3',
+      disponibilite: 'Tango oyoki kosala',
+      message: 'Sango (koyela te)',
+      cvNote: 'CV na yo: yotinda na sekreteri na WhatsApp mbwa ya kosilisa fomu (bouton oyo etikali).',
+      consentLabel: 'Etoki makambo ya ngai azali na kosalemiselwa na bokoyani bwa MAASH moko.',
+      notePrivacy:
+        'Makambo ya yo azali na kosalemiselwa na bokoyani bwa MAASH moko, te etindami na bato misusu.',
+      submit: 'Tinda bokoyani na ngai',
+      sending: 'Etindami…',
+      againBtn: 'Bokoyani ya sika',
+      errRequired: 'Sala makambo manso esengeli.',
+      errEmail: 'Mail ya yo elelami te.',
+      errTel: 'Telefoni ya yo elelami te.',
+      errConsent: 'Etoki makambo ya ngai.',
+      errSend:
+        'Tindwa etilali te. Yosolola lisusu to tinda CV na yo na WhatsApp (bouton oyo etikali).',
+      successTitle: 'Bokoyani etindami!',
+      successText:
+        'Nasala yo. Bokoyani na yo etindami na sekreteri ya MAASH — tinda seka CV na yo na WhatsApp, biso bako yokana na yo sikasusu.',
+      whatsappCta: 'Tinda na WhatsApp',
+      recruitBadge: 'Rekrutman',
+      recruitTitle: 'Turi na kosala banakisi',
+      recruitText:
+        'Bokasi na MAASH: ba agent ya bokambi, ba chef ya ekipi na mingi. Tala banakisi bazali na molayi na yosekola.',
+      recruitCta: 'Tala banakisi',
     },
 
     notFound: {

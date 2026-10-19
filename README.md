@@ -90,3 +90,12 @@ maash-site/
   avec lien « Itinéraire » Google Maps automatique et mention « d'autres établissements à venir ».
   Le document source mentionne un tarif « 10 $ pour les fonctionnaires de l'État » : **non affiché,
   en attente de confirmation MAASH**.
+- **Formulaire de recrutement** (`/recrutement`) : envoi des candidatures par e-mail via
+  **Web3Forms** (sans back-end). Le CV n'est **pas** téléversé dans le formulaire — le
+  téléversement de fichiers est une option **payante** (Pro) chez Web3Forms : le candidat l'envoie
+  **par WhatsApp** après soumission (bouton sur le formulaire + rappel dans la confirmation).
+  Activation : créer un compte sur https://web3forms.com avec l'e-mail destinataire (ex.
+  secretariat@maashprosoc.cd), ajouter la clé d'accès dans `.env` (ignoré par git) :
+  `VITE_WEB3FORMS_KEY=votre-cle-ici`, puis redémarrer `npm run dev` / redéployer. Sans clé ou
+  en cas d'erreur : message détaillé + renvoi WhatsApp. Entrées : footer (Navigation) + page
+  Contact (« Nous recrutons »). Anti-spam : honeypot + piège temporel (3 s).

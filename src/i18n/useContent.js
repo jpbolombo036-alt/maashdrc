@@ -38,6 +38,7 @@ export function useContent() {
     prosoc: slice('prosoc'),
     cibles: slice('cibles'),
     hopitaux: slice('hopitaux'),
+    recrutement: slice('recrutement'),
     stats: slice('ui.home.stats'),
   }
 }

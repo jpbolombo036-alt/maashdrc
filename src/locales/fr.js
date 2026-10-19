@@ -217,6 +217,16 @@ export default {
     ],
   },
 
+  recrutement: {
+    postes: [
+      { code: 'agent-at', nom: 'Agent AT (agent de terrain)' },
+      { code: 'chef-equipe', nom: 'Chef d’équipe' },
+      { code: 'superviseur', nom: 'Superviseur' },
+      { code: 'encodeur', nom: 'Encodeur' },
+      { code: 'spontanee', nom: 'Candidature spontanée' },
+    ],
+  },
+
   ui: {
     meta: {
       accueil: {
@@ -254,6 +264,11 @@ export default {
         description:
           'Contact MAASH : adresse du siège à Ngaliema (Kinshasa), téléphones, WhatsApp, e-mails et horaires d’ouverture.',
       },
+      recrutement: {
+        title: 'Recrutement — MAASH',
+        description:
+          'Postes ouverts chez MAASH : agent terrain, chef d’équipe, superviseur… candidatez en ligne et transmettez votre CV.',
+      },
       introuvable: {
         title: 'Page introuvable — MAASH',
         description: 'La page demandée n’existe pas ou a été déplacée.',
@@ -270,6 +285,7 @@ export default {
       contact: 'Contact',
       join: 'Adhérer',
       login: 'Connexion',
+      recrutement: 'Recrutement',
     },
     burger: { open: 'Ouvrir le menu' },
     theme: {
@@ -420,6 +436,48 @@ export default {
         'Couverture actuelle : districts de Tshangu, Mont-Amba, Funa et Lukunga à Kinshasa. Déploiement prévu dans les 24 communes de Kinshasa.',
       domainNote:
         'Domaine officiel prévu : {domaine} — disponibilité et réservation à vérifier. Lien cartographique : à compléter.',
+    },
+
+    recrutement: {
+      h1: 'Rejoindre MAASH',
+      hero: 'Vous partagez nos valeurs ? Rejoignez MAASH et contribuez à la protection sociale des Congolais, sur le terrain comme au siège.',
+      postesBadge: 'Postes ouverts',
+      postesTitle: 'Rejoignez nos équipes',
+      postesText:
+        'Les postes ci-dessous correspondent aux rôles du programme PROSOC. Vous ne trouvez pas votre profil ? Candidatez spontanément.',
+      formBadge: 'Candidature',
+      formTitle: 'Formulaire de candidature',
+      nom: 'Nom complet',
+      tel: 'Téléphone (ex. +243…)',
+      email: 'Adresse e-mail',
+      poste: 'Poste visé',
+      diplome: 'Niveau d’études',
+      experience: 'Années d’expérience',
+      expPlaceholder: 'Ex. : 3 ans',
+      disponibilite: 'Disponibilité',
+      message: 'Message (facultatif)',
+      cvNote: 'Votre CV : envoyez-le au secrétariat par WhatsApp après l’envoi du formulaire (bouton ci-dessous).',
+      consentLabel: 'J’accepte que mes données soient utilisées uniquement pour le recrutement MAASH.',
+      notePrivacy:
+        'Vos informations sont utilisées exclusivement pour le processus de recrutement MAASH et ne sont pas transmises à des tiers.',
+      submit: 'Envoyer ma candidature',
+      sending: 'Envoi en cours…',
+      againBtn: 'Nouvelle candidature',
+      errRequired: 'Veuillez remplir tous les champs obligatoires.',
+      errEmail: 'Adresse e-mail invalide.',
+      errTel: 'Numéro de téléphone invalide.',
+      errConsent: 'Veuillez accepter l’utilisation de vos données.',
+      errSend:
+        'L’envoi a échoué. Réessayez ou envoyez votre CV directement par WhatsApp (bouton ci-dessous).',
+      successTitle: 'Candidature envoyée !',
+      successText:
+        'Merci. Votre candidature a été transmise au secrétariat MAASH — envoyez maintenant votre CV par WhatsApp, puis nous vous recontacterons très bientôt.',
+      whatsappCta: 'Envoyer par WhatsApp',
+      recruitBadge: 'Recrutement',
+      recruitTitle: 'Nous recrutons',
+      recruitText:
+        'Des opportunités chez MAASH : agents terrain, chefs d’équipe et plus. Consultez les postes ouverts et candidatez en ligne.',
+      recruitCta: 'Voir les postes et candidatez',
     },
 
     notFound: {

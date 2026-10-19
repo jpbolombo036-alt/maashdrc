@@ -64,6 +64,19 @@ const { maash } = useContent()
         </div>
       </div>
     </section>
+
+    <section class="section section-alt">
+      <div class="container recruit-band">
+        <div>
+          <span class="badge">{{ t('ui.recrutement.recruitBadge') }}</span>
+          <h2 class="section-title">{{ t('ui.recrutement.recruitTitle') }}</h2>
+          <p class="section-subtitle">{{ t('ui.recrutement.recruitText') }}</p>
+        </div>
+        <router-link to="/recrutement" class="btn btn-primary">
+          {{ t('ui.recrutement.recruitCta') }}
+        </router-link>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -78,5 +91,17 @@ const { maash } = useContent()
 
 .icon-mt {
   margin-top: 1.5rem;
+}
+
+.recruit-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.recruit-band .section-subtitle {
+  margin-bottom: 0;
 }
 </style>

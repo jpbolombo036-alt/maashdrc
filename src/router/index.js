@@ -78,6 +78,16 @@ const routes = [
     },
   },
   {
+    path: '/recrutement',
+    name: 'recrutement',
+    component: () => import('../views/RecrutementView.vue'),
+    meta: {
+      title: 'Recrutement',
+      description:
+        'Postes ouverts chez MAASH : agent terrain, chef d’équipe, superviseur… candidatez en ligne et transmettez votre CV.',
+    },
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'introuvable',
     component: () => import('../views/NotFoundView.vue'),
