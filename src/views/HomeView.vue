@@ -1,14 +1,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { maash, presentation, branches, prosoc, cibles } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
+import { useContent } from '../i18n/useContent'
 
-const chiffres = [
-  { valeur: '4', label: 'branches de prestations' },
-  { valeur: '4', label: 'districts couverts à Kinshasa' },
-  { valeur: '24', label: 'communes visées à Kinshasa' },
-  { valeur: '2 USD', label: 'cotisation mensuelle dès le Solo' },
-]
+const { t, tm } = useI18n()
+const { maash, presentation, branches, prosoc, cibles, stats } = useContent()
 
 const heroSlides = [
   '/accueil.jpg',
@@ -20,10 +17,16 @@ const heroSlides = [
   '/famille.jpg',
 ]
 const heroSlideIndex = ref(0)
+const paused = ref(false)
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 let heroSlideTimer
 
 onMounted(() => {
+  if (reduceMotion) return
+
   heroSlideTimer = setInterval(() => {
+    if (paused.value) return
+
     heroSlideIndex.value = (heroSlideIndex.value + 1) % heroSlides.length
   }, 3000)
 })
@@ -35,7 +38,13 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <section class="hero">
+    <section
+      class="hero"
+      @mouseenter="paused = true"
+      @mouseleave="paused = false"
+      @focusin="paused = true"
+      @focusout="paused = false"
+    >
       <div class="hero-bg" aria-hidden="true">
         <div
           v-for="(photo, i) in heroSlides"
@@ -48,27 +57,36 @@ onUnmounted(() => {
       <div class="hero-tint" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-content">
-          <span class="hero-badge">Bienvenue chez MAASH</span>
-          <h1>{{ maash.sloganFr }}</h1>
+          <span class="hero-badge">{{ t('ui.home.badge') }}</span>
+          <h1>{{ maash.slogan }}</h1>
           <p class="hero-slogan-lingala">{{ maash.sloganLingala }}</p>
           <p class="hero-text">{{ presentation.resume }}</p>
           <div class="hero-actions">
-            <a :href="maash.prosocAppUrl" class="btn btn-white" target="_blank" rel="noopener">
-              Adhérer sur MAASH
+            <a :href="maash.prosocAdhesionUrl" class="btn btn-white" target="_blank" rel="noopener">
+              {{ t('ui.common.joinMaash') }}
             </a>
-            <router-link to="/services" class="btn btn-ghost">Découvrir nos services</router-link>
+            <router-link to="/services" class="btn btn-ghost">{{ t('ui.common.discoverServices') }}</router-link>
+            <a :href="maash.apkUrl" class="btn btn-ghost" download>
+              {{ t('ui.common.downloadApp') }} (APK)
+            </a>
           </div>
         </div>
 
         <div class="hero-card">
-          <h3>Informations clés</h3>
+          <h3>{{ t('ui.home.infoTitle') }}</h3>
           <ul>
-            <li><span>Création</span><strong>{{ maash.creation }}</strong></li>
-            <li><span>Reconnaissance</span><strong>F92/56.275 (Ministère de la Justice)</strong></li>
-            <li><span>Siège</span><strong>Ngaliema, Kinshasa — {{ maash.adresse.pays }}</strong></li>
-            <li><span>Devise</span><strong>{{ maash.devise }}</strong></li>
+            <li><span>{{ t('ui.home.infoCreationLabel') }}</span><strong>{{ maash.creation }}</strong></li>
+            <li>
+              <span>{{ t('ui.home.infoRecognitionLabel') }}</span>
+              <strong>{{ t('ui.home.infoRecognition') }}</strong>
+            </li>
+            <li>
+              <span>{{ t('ui.home.infoSeatLabel') }}</span>
+              <strong>{{ t('ui.home.infoSeat', { pays: maash.adresse.pays }) }}</strong>
+            </li>
+            <li><span>{{ t('ui.home.infoMottoLabel') }}</span><strong>{{ maash.devise }}</strong></li>
           </ul>
-          <router-link to="/contact" class="btn btn-primary btn-block">Nous contacter</router-link>
+          <router-link to="/contact" class="btn btn-primary btn-block">{{ t('ui.common.contactUs') }}</router-link>
         </div>
       </div>
     </section>
@@ -76,7 +94,7 @@ onUnmounted(() => {
     <section class="section">
       <div class="container">
         <div class="grid grid-4">
-          <div v-for="c in chiffres" :key="c.label" class="stat card">
+          <div v-for="c in stats" :key="c.label" class="stat card">
             <div class="stat-value">{{ c.valeur }}</div>
             <div class="stat-label">{{ c.label }}</div>
           </div>
@@ -87,15 +105,15 @@ onUnmounted(() => {
     <section class="section section-alt">
       <div class="container split">
         <div>
-          <span class="badge">Qui sommes-nous</span>
-          <h2 class="section-title">Une mutuelle de protection sociale pour tous</h2>
+          <span class="badge">{{ t('ui.home.whoBadge') }}</span>
+          <h2 class="section-title">{{ t('ui.home.whoTitle') }}</h2>
           <p class="section-subtitle">{{ presentation.raisonCreation }}</p>
-          <router-link to="/presentation" class="btn btn-outline">En savoir plus</router-link>
+          <router-link to="/presentation" class="btn btn-outline">{{ t('ui.home.more') }}</router-link>
         </div>
         <div class="card">
-          <h3>Notre vision</h3>
+          <h3>{{ t('ui.home.vision') }}</h3>
           <p>{{ presentation.vision }}</p>
-          <h3 class="mt">Nos principes</h3>
+          <h3 class="mt">{{ t('ui.home.principles') }}</h3>
           <ul class="list-check">
             <li v-for="p in presentation.principes.slice(0, 4)" :key="p">{{ p }}</li>
           </ul>
@@ -105,10 +123,10 @@ onUnmounted(() => {
 
     <section class="section">
       <div class="container">
-        <span class="badge">Nos services</span>
-        <h2 class="section-title">Quatre branches de protection</h2>
+        <span class="badge">{{ t('ui.home.servicesBadge') }}</span>
+        <h2 class="section-title">{{ t('ui.home.servicesTitle') }}</h2>
         <p class="section-subtitle">
-          Des prestations accessibles, adaptées aux besoins des familles et du secteur informel.
+          {{ t('ui.home.servicesSubtitle') }}
         </p>
         <div class="grid grid-4">
           <router-link v-for="b in branches" :key="b.id" to="/services" class="card branch-card">
@@ -125,20 +143,22 @@ onUnmounted(() => {
           <h3>PROSOC &amp; Prosoc</h3>
           <p>{{ prosoc.resume }}</p>
           <ul class="list-check">
-            <li>Adhésion et gestion administrative simplifiées</li>
-            <li>Paiement Mobile Money et carte Visa</li>
-            <li>Bon de jeton pour l’orientation vers les prestataires</li>
+            <li v-for="p in tm('ui.home.prosocPoints')" :key="p">{{ p }}</li>
           </ul>
-          <router-link to="/prosoc" class="btn btn-outline">Découvrir le programme</router-link>
+          <router-link to="/prosoc" class="btn btn-outline">{{ t('ui.home.discoverProgram') }}</router-link>
         </div>
         <div>
-          <span class="badge">Devenir membre</span>
-          <h2 class="section-title">Rejoignez MAASH dès aujourd’hui</h2>
+          <span class="badge">{{ t('ui.home.memberBadge') }}</span>
+          <h2 class="section-title">{{ t('ui.home.memberTitle') }}</h2>
           <p class="section-subtitle">
-            Adhésion à {{ cibles.adherence }} Formules à partir de {{ cibles.formules[0].prix }} par
-            mois.
+            {{
+              t('ui.home.memberSubtitle', {
+                fee: cibles.adherence,
+                price: cibles.formules[0].prix,
+              })
+            }}
           </p>
-          <router-link to="/adhesion" class="btn btn-primary">Voir les tarifs</router-link>
+          <router-link to="/adhesion" class="btn btn-primary">{{ t('ui.home.viewPrices') }}</router-link>
         </div>
       </div>
     </section>
@@ -318,6 +338,12 @@ onUnmounted(() => {
 .branch-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: none;
+  }
 }
 
 @media (max-width: 960px) {

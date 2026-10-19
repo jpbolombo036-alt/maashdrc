@@ -36,8 +36,15 @@ maash-site/
     ├── main.js
     ├── App.vue                 # layout (header + router-view + footer)
     ├── styles/main.css         # design system vert & blanc
-    ├── data/maashData.js       # source unique des contenus (questionnaire MAASH)
-    ├── router/index.js         # routes Vue Router
+    ├── i18n/
+    │   ├── index.js             # configuration vue-i18n + langue en localStorage
+    │   └── useContent.js        # slices de contenus réactives selon la langue
+    ├── locales/                 # catalogues de traduction (contenus + interface)
+    │   ├── fr.js                # source unique de vérité
+    │   ├── ln.js                # lingala (traduction, à relire par MAASH)
+    │   ├── en.js                # anglais (traduction machine, à relire par MAASH)
+    │   └── es.js                # espagnol (traduction machine, à relire par MAASH)
+    ├── router/index.js         # routes Vue Router + meta SEO par route
     ├── components/
     │   ├── AppHeader.vue       # navigation responsive sticky
     │   └── AppFooter.vue
@@ -46,8 +53,16 @@ maash-site/
 
 ## Notes
 
-- **Source unique de vérité** : `src/data/maashData.js`. Toute mise à jour des informations
-  institutionnelles se fait ici et se propage automatiquement partout.
+- **Source unique de vérité** : `src/locales/fr.js` (contenus institutionnels **et** textes
+  d'interface). Toute mise à jour des informations se fait ici et se propage automatiquement
+  partout. `en.js` et `es.js` en reprennent exactement la structure.
+- **Langues (vue-i18n)** : français (défaut), **lingala**, anglais, espagnol — choix dans le
+  bouton 🌐 du header, mémorisé en `localStorage` (aucun cookie, aucun rechargement, changement
+  réactif instantané). Pour ajouter une langue : créer `src/locales/xx.js` (copier `fr.js` et
+  traduire), l'enregistrer dans `src/i18n/index.js` (`messages` + `AVAILABLE_LOCALES`), dans
+  `src/i18n/useContent.js` (`catalogs`) et dans `langOptions` de `AppHeader.vue`. L'ancien
+  widget Google Translate (arrêté par Google le 1er octobre 2026) a été retiré.
+  Les traductions lingala / anglais / espagnol sont d'apport : **à faire relire par MAASH**.
 - Les informations marquées « à compléter » dans le questionnaire (e-mail officiel confirmé,
   liste des hôpitaux, tarifs VIP, cartographie, réseaux sociaux…) ne sont pas inventées :
   le site les signale comme telles.
@@ -59,3 +74,19 @@ maash-site/
 - Couleurs : palette verte `#064e3b → #10b981` sur fond blanc, définies en variables CSS
   dans `src/styles/main.css`.
 - Le domaine prévu est `maashprosoc.cd` (réservation à confirmer par MAASH).
+- **SEO** : titres et meta descriptions par route (`src/router/index.js`, mis à jour à chaque
+  navigation), balises Open Graph / Twitter Card (`index.html`), `public/robots.txt` et
+  `public/sitemap.xml`. Les URL du sitemap utilisent `https://maashprosoc.cd` : à ajuster si le
+  domaine final diffère. Toute adresse inconnue affiche la page 404 personnalisée
+  (`src/views/NotFoundView.vue`, en `noindex`).
+- **Application Android** : l'APK est servi depuis `public/apk/prod-prosoc-14.10.apk`
+  (URL publique : `/apk/prod-prosoc-14.10.apk`, clé `maash.apkUrl` dans les catalogues ;
+  attribut `download`). Boutons : accueil (hero), page PROSOC, footer.
+  Pour publier une nouvelle version : remplacer le fichier dans `public/apk/` (et le renvoyer
+  sous le même nom si l'URL doit rester stable).
+- **Hôpitaux (catégorie standard)** : la liste s'affiche dans une modale ouverte en cliquant sur
+  la carte *Catégorie standard* (prestation H) de la branche Soins de santé — données dans
+  `hopitaux.liste` des 4 catalogues (noms propres identiques en toutes langues, ajout = 1 ligne),
+  avec lien « Itinéraire » Google Maps automatique et mention « d'autres établissements à venir ».
+  Le document source mentionne un tarif « 10 $ pour les fonctionnaires de l'État » : **non affiché,
+  en attente de confirmation MAASH**.

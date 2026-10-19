@@ -1,23 +1,25 @@
 <script setup>
-import { gouvernance } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
+import { useContent } from '../i18n/useContent'
+
+const { t } = useI18n()
+const { gouvernance } = useContent()
 </script>
 
 <template>
   <div>
     <section class="page-hero">
       <div class="container">
-        <h1>Gouvernance et organisation</h1>
+        <h1>{{ t('ui.gouvernance.h1') }}</h1>
         <p>{{ gouvernance.introduction }}</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <span class="badge">Structure institutionnelle</span>
-        <h2 class="section-title">12 blocs organisationnels</h2>
-        <p class="section-subtitle">
-          Périmètre de publication détaillé sur le site : à confirmer par MAASH.
-        </p>
+        <span class="badge">{{ t('ui.gouvernance.badge') }}</span>
+        <h2 class="section-title">{{ t('ui.gouvernance.title') }}</h2>
+        <p class="section-subtitle">{{ t('ui.gouvernance.subtitle') }}</p>
         <div class="grid grid-3">
           <div v-for="(b, i) in gouvernance.blocs" :key="b.nom" class="card gov-card">
             <div class="gov-index">{{ String(i + 1).padStart(2, '0') }}</div>

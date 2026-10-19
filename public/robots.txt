@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maashprosoc.cd/sitemap.xml

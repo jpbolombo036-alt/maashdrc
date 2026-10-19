@@ -1,14 +1,18 @@
 <script setup>
-import { maash } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
+import { useContent } from '../i18n/useContent'
+
+const { t } = useI18n()
+const { maash } = useContent()
 </script>
 
 <template>
   <div>
     <section class="page-hero">
       <div class="container">
-        <h1>Contact</h1>
-        <p>Nous sommes à votre écoute pour toute information sur MAASH et le programme PROSOC.</p>
+        <h1>{{ t('ui.contact.h1') }}</h1>
+        <p>{{ t('ui.contact.hero') }}</p>
       </div>
     </section>
 
@@ -16,7 +20,7 @@ import AppIcon from '../components/AppIcon.vue'
       <div class="container grid grid-2">
         <div class="card contact-card">
           <div class="icon"><AppIcon name="pin" /></div>
-          <h3>Adresse du siège</h3>
+          <h3>{{ t('ui.contact.addressTitle') }}</h3>
           <p>
             {{ maash.adresse.ligne1 }}<br />
             {{ maash.adresse.ligne2 }}<br />
@@ -25,20 +29,23 @@ import AppIcon from '../components/AppIcon.vue'
           </p>
 
           <div class="icon icon-mt"><AppIcon name="phone" /></div>
-          <h3>Téléphone et e-mail</h3>
+          <h3>{{ t('ui.contact.phoneEmailTitle') }}</h3>
           <p>
-            Secrétariat : <a :href="maash.telephoneHref">{{ maash.telephone }}</a> (WhatsApp)<br />
-            E-mail : <a :href="`mailto:${maash.email}`">{{ maash.email }}</a><br />
-            Secrétariat (e-mail) : <a :href="`mailto:${maash.emailSecretariat}`">{{ maash.emailSecretariat }}</a>
+            {{ t('ui.contact.secretariat') }}
+            <a :href="maash.telephoneHref">{{ maash.telephone }}</a> (WhatsApp)<br />
+            {{ t('ui.contact.emailLabel') }}
+            <a :href="`mailto:${maash.email}`">{{ maash.email }}</a><br />
+            {{ t('ui.contact.secretariatEmail') }}
+            <a :href="`mailto:${maash.emailSecretariat}`">{{ maash.emailSecretariat }}</a>
           </p>
           <a :href="maash.whatsappHref" class="btn btn-primary" target="_blank" rel="noopener">
-            Contacter par WhatsApp
+            {{ t('ui.contact.whatsappBtn') }}
           </a>
         </div>
 
         <div class="card contact-card">
           <div class="icon"><AppIcon name="clock" /></div>
-          <h3>Horaires d’ouverture</h3>
+          <h3>{{ t('ui.contact.hoursTitle') }}</h3>
           <div class="table-wrap" style="margin-bottom: 1.5rem">
             <table class="data">
               <tbody>
@@ -51,15 +58,9 @@ import AppIcon from '../components/AppIcon.vue'
           </div>
 
           <div class="icon"><AppIcon name="globe" /></div>
-          <h3>Implantation</h3>
-          <p>
-            Couverture actuelle : districts de Tshangu, Mont-Amba, Funa et Lukunga à Kinshasa.
-            Déploiement prévu dans les 24 communes de Kinshasa.
-          </p>
-          <div class="note">
-            Domaine officiel prévu : <strong>{{ maash.domaine }}</strong> — disponibilité et
-            réservation à vérifier. Lien cartographique : à compléter.
-          </div>
+          <h3>{{ t('ui.contact.coverageTitle') }}</h3>
+          <p>{{ t('ui.contact.coverageText') }}</p>
+          <div class="note">{{ t('ui.contact.domainNote', { domaine: maash.domaine }) }}</div>
         </div>
       </div>
     </section>

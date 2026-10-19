@@ -1,30 +1,34 @@
 <script setup>
-import { cibles, maash } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
+import { useContent } from '../i18n/useContent'
+
+const { t, tm } = useI18n()
+const { cibles, maash } = useContent()
 </script>
 
 <template>
   <div>
     <section class="page-hero">
       <div class="container">
-        <h1>Adhésion et tarifs</h1>
-        <p>Devenez membre de MAASH et bénéficiez des prestations du programme PROSOC.</p>
+        <h1>{{ t('ui.adhesion.h1') }}</h1>
+        <p>{{ t('ui.adhesion.hero') }}</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <span class="badge">Cotisations mensuelles</span>
-        <h2 class="section-title">Formules familiales</h2>
+        <span class="badge">{{ t('ui.adhesion.badge') }}</span>
+        <h2 class="section-title">{{ t('ui.adhesion.title') }}</h2>
         <p class="section-subtitle">{{ cibles.adherence }} {{ cibles.remarqueFormules }}</p>
 
         <div class="table-wrap">
           <table class="data">
             <thead>
               <tr>
-                <th>Formule</th>
-                <th>Composition</th>
-                <th>Cotisation mensuelle</th>
+                <th>{{ t('ui.adhesion.thPlan') }}</th>
+                <th>{{ t('ui.adhesion.thComposition') }}</th>
+                <th>{{ t('ui.adhesion.thMonthly') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -38,9 +42,10 @@ import AppIcon from '../components/AppIcon.vue'
         </div>
 
         <div class="note" style="margin-top: 1.5rem">
-          Soins de santé en supplément des cotisations : catégorie standard
-          <strong>19 USD/mois</strong> par famille, soins communautaires <strong>à partir de
-          10 USD/mois</strong> par famille, jusqu’à six personnes.
+          {{ t('ui.adhesion.noteHealth1') }}
+          <strong>19 USD/mois</strong> {{ t('ui.adhesion.noteHealth2') }}
+          <strong>{{ t('ui.adhesion.noteHealth3') }} 10 USD/mois</strong>
+          {{ t('ui.adhesion.noteHealth4') }}
         </div>
       </div>
     </section>
@@ -49,26 +54,23 @@ import AppIcon from '../components/AppIcon.vue'
       <div class="container grid grid-3">
         <div class="card">
           <div class="icon"><AppIcon name="document" /></div>
-          <h3>Documents requis</h3>
+          <h3>{{ t('ui.adhesion.docsTitle') }}</h3>
           <ul class="list-check">
             <li v-for="d in cibles.documents" :key="d">{{ d }}</li>
           </ul>
         </div>
         <div class="card">
           <div class="icon"><AppIcon name="users" /></div>
-          <h3>Personnes à charge</h3>
+          <h3>{{ t('ui.adhesion.depsTitle') }}</h3>
           <ul class="list-check">
             <li v-for="p in cibles.personnesCharge" :key="p">{{ p }}</li>
           </ul>
         </div>
         <div class="card">
           <div class="icon"><AppIcon name="card" /></div>
-          <h3>Paiement</h3>
+          <h3>{{ t('ui.adhesion.payTitle') }}</h3>
           <ul class="list-check">
-            <li>Mobile Money — tous les opérateurs en RDC</li>
-            <li>Carte Visa</li>
-            <li>Reçu imprimé par la machine POS</li>
-            <li>Message de confirmation pour le Mobile Money via Prosoc</li>
+            <li v-for="p in tm('ui.adhesion.payList')" :key="p">{{ p }}</li>
           </ul>
         </div>
       </div>
@@ -76,8 +78,8 @@ import AppIcon from '../components/AppIcon.vue'
 
     <section class="section">
       <div class="container">
-        <span class="badge">Modalités</span>
-        <h2 class="section-title">Comment adhérer</h2>
+        <span class="badge">{{ t('ui.adhesion.howBadge') }}</span>
+        <h2 class="section-title">{{ t('ui.adhesion.howTitle') }}</h2>
         <div class="grid grid-3">
           <div v-for="(m, i) in cibles.modalites" :key="i" class="card step-card">
             <div class="step-num">{{ i + 1 }}</div>
@@ -86,20 +88,17 @@ import AppIcon from '../components/AppIcon.vue'
         </div>
         <div class="cta-band">
           <div>
-            <h3>Prêt à adhérer ?</h3>
-            <p>
-              Adhérez sur MAASH en ligne ou contactez le secrétariat —
-              {{ maash.telephone }} (WhatsApp).
-            </p>
+            <h3>{{ t('ui.adhesion.ctaTitle') }}</h3>
+            <p>{{ t('ui.adhesion.ctaText', { phone: maash.telephone }) }}</p>
           </div>
           <div class="cta-actions">
             <a
-              :href="maash.prosocAppUrl"
+              :href="maash.prosocAdhesionUrl"
               class="btn btn-white"
               target="_blank"
               rel="noopener"
             >
-              Adhérer sur MAASH
+              {{ t('ui.common.joinMaash') }}
             </a>
             <a :href="maash.whatsappHref" class="btn btn-ghost" target="_blank" rel="noopener">
               WhatsApp

@@ -360,7 +360,11 @@ html[data-theme='dark'] .nav {
 }
 
 html[data-theme='dark'] .brand-text {
-  color: #eaf6f0;
+  /* background-image (et non la shorthand background) : la shorthand
+     remettrait background-clip à border-box et le texte deviendrait un bloc plein */
+  background-image: linear-gradient(135deg, #6ee7b7, #34d399);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 html[data-theme='dark'] .nav .burger span {
@@ -408,28 +412,4 @@ html[data-theme='dark'] .lang-item.active {
   color: var(--green-900);
 }
 
-/* ---- Google Translate : widget masqué, piloté par le bouton du header ---- */
-#google_translate_element {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  left: -9999px;
-  overflow: hidden;
-}
-
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
-.goog-te-gadget {
-  color: transparent !important;
-  font-size: 0 !important;
-}
-
-.goog-te-menu-pop {
-  display: none !important;
-}
+/* ---- Ancien widget Google Translate retiré (remplacé par vue-i18n) ---- */

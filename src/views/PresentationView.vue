@@ -1,13 +1,17 @@
 <script setup>
-import { maash, presentation } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
+import { useContent } from '../i18n/useContent'
+
+const { t } = useI18n()
+const { maash, presentation } = useContent()
 </script>
 
 <template>
   <div>
     <section class="page-hero">
       <div class="container">
-        <h1>Présentation institutionnelle</h1>
+        <h1>{{ t('ui.presentation.h1') }}</h1>
         <p>{{ presentation.resume }}</p>
       </div>
     </section>
@@ -16,12 +20,12 @@ import AppIcon from '../components/AppIcon.vue'
       <div class="container grid grid-2">
         <div class="card">
           <div class="icon"><AppIcon name="shield" /></div>
-          <h3>Raison d’être</h3>
+          <h3>{{ t('ui.presentation.purpose') }}</h3>
           <p>{{ presentation.raisonCreation }}</p>
         </div>
         <div class="card">
           <div class="icon"><AppIcon name="globe" /></div>
-          <h3>Vision</h3>
+          <h3>{{ t('ui.presentation.vision') }}</h3>
           <p>{{ presentation.vision }}</p>
         </div>
       </div>
@@ -29,9 +33,9 @@ import AppIcon from '../components/AppIcon.vue'
 
     <section class="section section-alt">
       <div class="container">
-        <span class="badge">Missions et finalités</span>
-        <h2 class="section-title">Ce que MAASH s’engage à faire</h2>
-        <p class="section-subtitle">Missions et finalités extraites du Référentiel Institutionnel Intégré (RII).</p>
+        <span class="badge">{{ t('ui.presentation.missionsBadge') }}</span>
+        <h2 class="section-title">{{ t('ui.presentation.missionsTitle') }}</h2>
+        <p class="section-subtitle">{{ t('ui.presentation.missionsSubtitle') }}</p>
         <div class="grid grid-2">
           <div v-for="(m, i) in presentation.missions" :key="i" class="card">
             <div class="mission-num">{{ i + 1 }}</div>
@@ -44,28 +48,22 @@ import AppIcon from '../components/AppIcon.vue'
     <section class="section">
       <div class="container grid grid-2">
         <div>
-          <span class="badge">Principes</span>
-          <h2 class="section-title">Nos valeurs de fonctionnement</h2>
-          <p class="section-subtitle">
-            Principes relevés dans le socle de compétences du RII. Cette synthèse ne constitue pas
-            une liste officielle de valeurs.
-          </p>
+          <span class="badge">{{ t('ui.presentation.principlesBadge') }}</span>
+          <h2 class="section-title">{{ t('ui.presentation.principlesTitle') }}</h2>
+          <p class="section-subtitle">{{ t('ui.presentation.principlesSubtitle') }}</p>
           <ul class="list-check">
             <li v-for="p in presentation.principes" :key="p">{{ p }}</li>
           </ul>
-          <p class="devise">Devise : <strong>{{ maash.devise }}</strong></p>
+          <p class="devise">{{ t('ui.presentation.mottoLabel') }} <strong>{{ maash.devise }}</strong></p>
         </div>
         <div>
-          <span class="badge">Zones d’intervention</span>
-          <h2 class="section-title">Présents à Kinshasa</h2>
-          <p class="section-subtitle">
-            Domaines : protection sociale, activités socio-humanitaires et accompagnement des
-            membres.
-          </p>
+          <span class="badge">{{ t('ui.presentation.zonesBadge') }}</span>
+          <h2 class="section-title">{{ t('ui.presentation.zonesTitle') }}</h2>
+          <p class="section-subtitle">{{ t('ui.presentation.zonesSubtitle') }}</p>
           <div class="grid grid-2 zone-grid">
             <div v-for="z in maash.zones.couverture" :key="z" class="card zone-card">
               <h3>{{ z }}</h3>
-              <p>Couverture actuelle</p>
+              <p>{{ t('ui.presentation.zoneCurrent') }}</p>
             </div>
           </div>
           <div class="note" style="margin-top: 1.25rem">{{ maash.zones.extension }}</div>

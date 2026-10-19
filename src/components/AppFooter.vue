@@ -1,5 +1,9 @@
 <script setup>
-import { maash } from '../data/maashData'
+import { useI18n } from 'vue-i18n'
+import { useContent } from '../i18n/useContent'
+
+const { t } = useI18n()
+const { maash } = useContent()
 
 const annee = new Date().getFullYear()
 </script>
@@ -12,25 +16,25 @@ const annee = new Date().getFullYear()
           <img src="/logo.jpg" alt="Logo officiel MAASH" class="footer-logo" />
           <strong>MAASH</strong>
         </div>
-        <p class="footer-desc">
-          {{ maash.nomComplet }} — mutuelle de protection sociale sans but lucratif, exécutante du
-          programme PROSOC.
-        </p>
-        <p class="footer-slogan">« {{ maash.sloganFr }} »</p>
+        <p class="footer-desc">{{ t('ui.footer.desc', { name: maash.nomComplet }) }}</p>
+        <p class="footer-slogan">« {{ maash.slogan }} »</p>
       </div>
 
       <div>
-        <h4>Navigation</h4>
+        <h4>{{ t('ui.footer.navigation') }}</h4>
         <ul>
-          <li><router-link to="/presentation">Présentation</router-link></li>
-          <li><router-link to="/services">Services</router-link></li>
-          <li><router-link to="/prosoc">Programme PROSOC</router-link></li>
-          <li><router-link to="/adhesion">Adhésion et tarifs</router-link></li>
+          <li><router-link to="/presentation">{{ t('ui.nav.presentation') }}</router-link></li>
+          <li><router-link to="/services">{{ t('ui.nav.services') }}</router-link></li>
+          <li><router-link to="/prosoc">{{ t('ui.prosoc.h1') }}</router-link></li>
+          <li><router-link to="/adhesion">{{ t('ui.adhesion.h1') }}</router-link></li>
+          <li>
+            <a :href="maash.apkUrl" download>{{ t('ui.common.downloadApp') }} (APK)</a>
+          </li>
         </ul>
       </div>
 
       <div>
-        <h4>Contact</h4>
+        <h4>{{ t('ui.footer.contact') }}</h4>
         <ul>
           <li>{{ maash.adresse.ligne1 }}</li>
           <li>{{ maash.adresse.ligne2 }}</li>
@@ -41,7 +45,7 @@ const annee = new Date().getFullYear()
       </div>
 
       <div>
-        <h4>Horaires</h4>
+        <h4>{{ t('ui.footer.hours') }}</h4>
         <ul>
           <li v-for="h in maash.horaires" :key="h.jour">
             <strong>{{ h.jour }}</strong> : {{ h.heure }}
@@ -52,8 +56,8 @@ const annee = new Date().getFullYear()
 
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <span>© {{ annee }} MAASH — Tous droits réservés.</span>
-        <span>Créée le {{ maash.creation }} • Kinshasa, RDC</span>
+        <span>{{ t('ui.footer.rights', { year: annee }) }}</span>
+        <span>{{ t('ui.footer.created', { date: maash.creation }) }}</span>
       </div>
     </div>
   </footer>

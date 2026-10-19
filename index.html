@@ -10,6 +10,26 @@
     <title>MAASH — Mutuelle Autorisée d'Assistance Socio-Humanitaire</title>
     <link rel="icon" type="image/jpeg" href="/logo.jpg" />
 
+    <!-- Open Graph / Twitter — titres et descriptions mis à jour par route dans src/router/index.js -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MAASH" />
+    <meta property="og:locale" content="fr_CD" />
+    <meta property="og:title" content="MAASH — Mutuelle Autorisée d'Assistance Socio-Humanitaire" />
+    <meta
+      property="og:description"
+      content="MAASH — Mutuelle Autorisée d'Assistance Socio-Humanitaire. Protégés en toute dignité, à bas prix. Programme PROSOC, Kinshasa, République démocratique du Congo."
+    />
+    <meta property="og:url" content="https://maashprosoc.cd/" />
+    <meta property="og:image" content="https://maashprosoc.cd/accueil.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MAASH — Mutuelle Autorisée d'Assistance Socio-Humanitaire" />
+    <meta
+      name="twitter:description"
+      content="MAASH — Mutuelle Autorisée d'Assistance Socio-Humanitaire. Protégés en toute dignité, à bas prix. Programme PROSOC, Kinshasa, République démocratique du Congo."
+    />
+    <meta name="twitter:image" content="https://maashprosoc.cd/accueil.jpg" />
+    <meta name="theme-color" content="#064e3b" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,24 +51,7 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
 
-    <!-- Google Translate : conteneur masqué, piloté par le bouton 🌐 du header -->
-    <div id="google_translate_element" aria-hidden="true"></div>
-    <script>
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: 'fr',
-            includedLanguages: 'en,es,zh-CN,hi,ar',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false,
-          },
-          'google_translate_element'
-        )
-      }
-    </script>
-    <script
-      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      defer
-    ></script>
+    <!-- Langues : vue-i18n (src/i18n + src/locales) — l'ancien widget Google Translate
+         (arrêté par Google le 1er octobre 2026) a été retiré. -->
   </body>
 </html>

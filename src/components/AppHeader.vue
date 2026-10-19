@@ -1,18 +1,23 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { maash } from '../data/maashData'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
+import { useContent } from '../i18n/useContent'
+import { setLocale } from '../i18n'
+
+const { t, locale } = useI18n()
+const { maash } = useContent()
 
 const menuOpen = ref(false)
 
 const links = [
-  { to: '/', label: 'Accueil' },
-  { to: '/presentation', label: 'Présentation' },
-  { to: '/gouvernance', label: 'Gouvernance' },
-  { to: '/services', label: 'Services' },
-  { to: '/prosoc', label: 'PROSOC' },
-  { to: '/adhesion', label: 'Adhésion' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/', key: 'accueil' },
+  { to: '/presentation', key: 'presentation' },
+  { to: '/gouvernance', key: 'gouvernance' },
+  { to: '/services', key: 'services' },
+  { to: '/prosoc', key: 'prosoc' },
+  { to: '/adhesion', key: 'adhesion' },
+  { to: '/contact', key: 'contact' },
 ]
 
 function closeMenu() {
@@ -28,23 +33,15 @@ function toggleTheme() {
 }
 
 const langOpen = ref(false)
-const currentLang = ref('fr')
+// Langue active lue depuis vue-i18n (persistée en localStorage par setLocale)
+const currentLang = computed(() => locale.value)
 
 const langOptions = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'ln', label: 'Lingala', flag: '🇨🇩' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
-  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
-  { code: 'ar', label: 'العربية', flag: '🇸🇦' },
 ]
-
-function readTranslateCookie() {
-  const m = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/)
-  if (!m || !m[1]) return 'fr'
-  const parts = m[1].split('/')
-  return parts[2] || 'fr'
-}
 
 function toggleLangMenu() {
   langOpen.value = !langOpen.value
@@ -58,20 +55,8 @@ function closeLangMenu(e) {
 
 function setLang(code) {
   langOpen.value = false
-  const far = 'Thu, 31 Dec 2099 23:59:59 GMT'
-  const domains = ['', location.hostname, '.' + location.hostname]
-  const toFrench = code === 'fr'
-  for (const d of domains) {
-    const attr = d ? '; domain=' + d : ''
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + attr
-    if (!toFrench) {
-      document.cookie = 'googtrans=/fr/' + code + '; expires=' + far + '; path=/' + attr
-    }
-  }
-  location.reload()
+  setLocale(code) // réactif via vue-i18n : ni cookie, ni rechargement de page
 }
-
-currentLang.value = readTranslateCookie()
 
 onMounted(() => document.addEventListener('click', closeLangMenu))
 onUnmounted(() => document.removeEventListener('click', closeLangMenu))
@@ -88,7 +73,7 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
       <button
         class="burger"
         type="button"
-        aria-label="Ouvrir le menu"
+        :aria-label="t('ui.burger.open')"
         :aria-expanded="menuOpen"
         @click="menuOpen = !menuOpen"
       >
@@ -101,29 +86,34 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
           :key="link.to"
           :to="link.to"
           class="nav-link"
-          active-class="active"
+          exact-active-class="active"
           @click="closeMenu"
         >
-          {{ link.label }}
+          {{ t('ui.nav.' + link.key) }}
         </router-link>
         <a
-          :href="maash.prosocAppUrl"
+          :href="maash.prosocAdhesionUrl"
           class="btn btn-primary nav-cta"
           target="_blank"
           rel="noopener"
         >
-          Adhérer
+          {{ t('ui.nav.join') }}
         </a>
-        <a :href="maash.whatsappHref" class="btn btn-outline nav-cta" target="_blank" rel="noopener">
-          WhatsApp
+        <a
+          :href="maash.prosocLoginUrl"
+          class="btn btn-outline nav-cta"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ t('ui.nav.login') }}
         </a>
 
         <button
           class="theme-toggle"
           type="button"
-          :aria-label="isDark ? 'Passer en mode clair' : 'Passer en mode sombre'"
+          :aria-label="isDark ? t('ui.theme.toLight') : t('ui.theme.toDark')"
           :aria-pressed="isDark"
-          :title="isDark ? 'Mode clair' : 'Mode sombre'"
+          :title="isDark ? t('ui.theme.lightTitle') : t('ui.theme.darkTitle')"
           @click="toggleTheme"
         >
           <svg
@@ -159,9 +149,9 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
           <button
             class="theme-toggle lang-btn"
             type="button"
-            aria-label="Choisir la langue"
+            :aria-label="t('ui.lang.choose')"
             :aria-expanded="langOpen"
-            title="Langue"
+            :title="t('ui.lang.title')"
             @click.stop="toggleLangMenu"
           >
             <AppIcon name="globe" />
@@ -200,7 +190,7 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.6rem;
   min-height: 72px;
 }
 
@@ -209,6 +199,8 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   align-items: center;
   gap: 0.7rem;
   color: inherit;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
 }
 
 .brand-logo {
@@ -220,11 +212,21 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 }
 
 .brand-text {
-  line-height: 1.15;
-  font-size: 1.15rem;
+  line-height: 1.1;
+  font-size: 1.4rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--green-900);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--green-800), var(--green-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: filter 0.2s ease;
+}
+
+.brand:hover .brand-text {
+  filter: brightness(1.15) saturate(1.1);
 }
 
 .nav {
@@ -254,6 +256,19 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 .nav-cta {
   margin-left: 0.5rem;
   padding: 0.55rem 1.2rem;
+}
+
+/* Écrans moyens : on resserre la navigation pour dégager la marque MAASH */
+@media (max-width: 1200px) {
+  .nav-link {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  .nav-cta {
+    margin-left: 0.35rem;
+    padding: 0.5rem 0.95rem;
+  }
 }
 
 .burger {
