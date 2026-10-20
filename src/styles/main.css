@@ -359,6 +359,30 @@ html[data-theme='dark'] .nav {
   background: #0b1410;
 }
 
+html[data-theme='dark'] .nav-links {
+  background: #12201a;
+  border-color: #24352d;
+}
+
+html[data-theme='dark'] .nav-link {
+  color: #9fb3aa;
+}
+
+html[data-theme='dark'] .nav-link:hover {
+  color: #6ee7b7;
+  background: #183326;
+}
+
+html[data-theme='dark'] .nav-link.active {
+  color: #052e24;
+  background: #34d399;
+}
+
+html[data-theme='dark'] .brand-mark {
+  background: linear-gradient(145deg, #12201a, #0b1410);
+  box-shadow: inset 0 0 0 1px #24352d, 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
 html[data-theme='dark'] .brand-text {
   /* background-image (et non la shorthand background) : la shorthand
      remettrait background-clip à border-box et le texte deviendrait un bloc plein */
