@@ -66,8 +66,13 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   <header class="site-header">
     <div class="container header-inner">
       <router-link to="/" class="brand" @click="closeMenu">
-        <img src="/logo.jpg" alt="Logo officiel MAASH" class="brand-logo" />
-        <span class="brand-text">MAASH</span>
+        <span class="brand-mark">
+          <img src="/logo.jpg" alt="Logo officiel MAASH" class="brand-logo" />
+        </span>
+        <span class="brand-copy">
+          <span class="brand-text">MAASH</span>
+          <span class="brand-tagline">PROSOC · RDC</span>
+        </span>
       </router-link>
 
       <button
@@ -81,32 +86,37 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
       </button>
 
       <nav class="nav" :class="{ open: menuOpen }">
-        <router-link
-          v-for="link in links"
-          :key="link.to"
-          :to="link.to"
-          class="nav-link"
-          exact-active-class="active"
-          @click="closeMenu"
-        >
-          {{ t('ui.nav.' + link.key) }}
-        </router-link>
-        <a
-          :href="maash.prosocAdhesionUrl"
-          class="btn btn-primary nav-cta"
-          target="_blank"
-          rel="noopener"
-        >
-          {{ t('ui.nav.join') }}
-        </a>
-        <a
-          :href="maash.prosocLoginUrl"
-          class="btn btn-outline nav-cta"
-          target="_blank"
-          rel="noopener"
-        >
-          {{ t('ui.nav.login') }}
-        </a>
+        <div class="nav-links">
+          <router-link
+            v-for="link in links"
+            :key="link.to"
+            :to="link.to"
+            class="nav-link"
+            exact-active-class="active"
+            @click="closeMenu"
+          >
+            {{ t('ui.nav.' + link.key) }}
+          </router-link>
+        </div>
+
+        <div class="nav-actions">
+          <a
+            :href="maash.prosocLoginUrl"
+            class="btn btn-outline nav-cta nav-login"
+            target="_blank"
+            rel="noopener"
+          >
+            {{ t('ui.nav.login') }}
+          </a>
+          <a
+            :href="maash.prosocAdhesionUrl"
+            class="btn btn-primary nav-cta"
+            target="_blank"
+            rel="noopener"
+          >
+            {{ t('ui.nav.join') }}
+          </a>
+        </div>
 
         <button
           class="theme-toggle"
@@ -181,9 +191,18 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--white);
+  background: color-mix(in srgb, var(--white) 94%, transparent);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 30px rgba(6, 78, 59, 0.07);
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-900), var(--green-500), #fbbf24);
 }
 
 .header-inner {
@@ -191,21 +210,38 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  min-height: 72px;
+  min-height: 80px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.75rem;
   color: inherit;
   flex-shrink: 0;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  min-width: 148px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--green-50), var(--white));
+  box-shadow: inset 0 0 0 1px rgba(5, 150, 105, 0.16), 0 5px 15px rgba(6, 78, 59, 0.1);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
 }
 
 .brand-logo {
-  width: 52px;
-  height: 52px;
+  width: 43px;
+  height: 43px;
   object-fit: contain;
   border-radius: 50%;
   flex-shrink: 0;
@@ -225,6 +261,14 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
   transition: filter 0.2s ease;
 }
 
+.brand-tagline {
+  color: var(--ink-soft);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
 .brand:hover .brand-text {
   filter: brightness(1.15) saturate(1.1);
 }
@@ -232,11 +276,30 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 .nav {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.nav-links,
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  gap: 0.1rem;
+  padding: 0.28rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--green-50) 42%, var(--white));
+}
+
+.nav-actions {
+  gap: 0.45rem;
 }
 
 .nav-link {
-  padding: 0.5rem 0.8rem;
+  padding: 0.48rem 0.72rem;
   border-radius: 999px;
   color: var(--ink-soft);
   font-weight: 500;
@@ -254,20 +317,32 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 }
 
 .nav-cta {
-  margin-left: 0.5rem;
-  padding: 0.55rem 1.2rem;
+  margin-left: 0;
+  padding: 0.62rem 1.05rem;
+  box-shadow: 0 5px 14px rgba(4, 120, 87, 0.16);
+}
+
+.nav-login {
+  box-shadow: none;
 }
 
 /* Écrans moyens : on resserre la navigation pour dégager la marque MAASH */
 @media (max-width: 1200px) {
   .nav-link {
-    padding: 0.5rem 0.6rem;
+    padding: 0.5rem 0.55rem;
     font-size: 0.88rem;
   }
 
+  .nav {
+    gap: 0.55rem;
+  }
+
+  .nav-actions {
+    gap: 0.3rem;
+  }
+
   .nav-cta {
-    margin-left: 0.35rem;
-    padding: 0.5rem 0.95rem;
+    padding: 0.5rem 0.8rem;
   }
 }
 
@@ -295,14 +370,14 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 
   .nav {
     position: absolute;
-    top: 72px;
+    top: 80px;
     left: 0;
     right: 0;
     background: var(--white);
     flex-direction: column;
     align-items: stretch;
     padding: 1rem 1.25rem 1.5rem;
-    gap: 0.35rem;
+    gap: 0.8rem;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-md);
     display: none;
@@ -312,9 +387,26 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
     display: flex;
   }
 
+  .nav-links,
+  .nav-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links {
+    padding: 0.35rem;
+    border-radius: 14px;
+  }
+
+  .nav-link,
   .nav-cta {
-    margin-left: 0;
-    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-actions {
+    gap: 0.55rem;
   }
 }
 
@@ -346,10 +438,40 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
 }
 
 @media (max-width: 960px) {
+  .header-inner {
+    min-height: 72px;
+  }
+
+  .brand {
+    min-width: 0;
+    margin-right: 0;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+
+  .brand-logo {
+    width: 37px;
+    height: 37px;
+  }
+
   .theme-toggle {
     margin-left: 0;
     margin-top: 0.5rem;
     align-self: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-tagline {
+    display: none;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
   }
 }
 

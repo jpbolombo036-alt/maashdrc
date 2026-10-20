@@ -79,8 +79,8 @@ maash-site/
   `public/sitemap.xml`. Les URL du sitemap utilisent `https://maashprosoc.cd` : à ajuster si le
   domaine final diffère. Toute adresse inconnue affiche la page 404 personnalisée
   (`src/views/NotFoundView.vue`, en `noindex`).
-- **Application Android** : l'APK est servi depuis `public/apk/prod-prosoc-14.10.apk`
-  (URL publique : `/apk/prod-prosoc-14.10.apk`, clé `maash.apkUrl` dans les catalogues ;
+- **Application Android** : l'APK est servi depuis `public/apk/prod-prosoc-20.10.apk`
+  (URL publique : `/apk/prod-prosoc-20.10.apk`, clé `maash.apkUrl` dans les catalogues ;
   attribut `download`). Boutons : accueil (hero), page PROSOC, footer.
   Pour publier une nouvelle version : remplacer le fichier dans `public/apk/` (et le renvoyer
   sous le même nom si l'URL doit rester stable).

@@ -16,7 +16,7 @@ export default {
     domaine: 'maashprosoc.cd',
     prosocAdhesionUrl: 'https://prosoc.maashrdc.com/adhesions/create',
     prosocLoginUrl: 'https://prosoc.maashrdc.com/login',
-    apkUrl: '/apk/prod-prosoc-14.10.apk',
+    apkUrl: '/apk/prod-prosoc-20.10.apk',
     email: 'contact@maashprosoc.cd',
     emailSecretariat: 'secretariat@maashprosoc.cd',
     telephone: '+243 976 158 691',
