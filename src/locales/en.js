@@ -18,9 +18,9 @@ export default {
     apkUrl: '/apk/prod-prosoc-20.10.apk',
     email: 'contact@maashprosoc.cd',
     emailSecretariat: 'secretariat@maashprosoc.cd',
-    telephone: '+243 976 158 691',
-    telephoneHref: 'tel:+243976158691',
-    whatsappHref: 'https://wa.me/243976158691',
+    telephone: '+243 973 798 811',
+    telephoneHref: 'tel:+243973798811',
+    whatsappHref: 'https://wa.me/243973798811',
     adresse: {
       ligne1: '372, avenue Colonel Mondjiba, Bassoko quarter',
       ligne2: 'Ngaliema Municipality, Kinshasa',
@@ -68,19 +68,19 @@ export default {
 
   gouvernance: {
     introduction:
-      'MAASH’s structure is presented in 12 blocks. The Executive Council includes the General Coordination and the operational structures; the CCA is a statutory control body, with no functional subordination to the EC. The Board has its own secretariat, separate from the General Secretariat.',
+      'MAASH’s structure is presented in 12 blocks. The Executive Committee includes the General Coordination and the operational structures; the CCA is a statutory control body, with no functional subordination to the EC. The Board has its own secretariat, separate from the General Secretariat.',
     blocs: [
       { nom: 'General Assembly (GA)', role: 'Supreme deliberative body of the members.' },
       { nom: 'Board of Directors (BOD)', role: 'Strategic guidance; has its own secretariat.' },
-      { nom: 'Executive Council (EC)', role: 'Includes the General Coordination and the operational structures.' },
+      { nom: 'Executive Committee (EC)', role: 'Includes the General Coordination and the operational structures.' },
       { nom: 'General Coordination (GC)', role: 'Operational direction of the programme and the institution.' },
       { nom: 'General Secretariat', role: 'Administrative coordination and cross-cutting support.' },
-      { nom: 'Audit and Accounts Chamber (CCA)', role: 'Control and audit, independent statutory body.' },
+      { nom: 'Control and Audit Commission (CCA)', role: 'Control and audit, independent statutory body.' },
       { nom: 'Human Resources and Socio-Humanitarian', role: 'Human resources management and socio-humanitarian action.' },
       { nom: 'Finance and Operations', role: 'Financial and operational management.' },
       { nom: 'Digital', role: 'Information systems and Prosoc application.' },
       { nom: 'Public Health', role: 'Health coverage and benefits.' },
-      { nom: 'Insurance', role: 'Partnerships with partner insurers.' },
+      { nom: 'Insurance', role: 'Relations with insurer partners.' },
       { nom: 'Communication and External Relations', role: 'Institutional communication and partnerships.' },
     ],
   },
@@ -124,19 +124,19 @@ export default {
       id: 'specialisee',
       titre: 'Specialized Branch',
       icon: 'shield',
-      resume: 'Organised together with insurance companies to improve benefits and widen coverage. Insurance products belong to the partners; MAASH does not present them as its own products.',
+      resume: 'In collaboration with its partners to improve benefits and widen coverage. MAASH works in coordination with its partners.',
       prestations: [
-        { code: '•', nom: 'Funeral cover', detail: 'Product of partner insurers, according to agreements.' },
-        { code: '•', nom: 'Complementary pension', detail: 'Product of partner insurers, according to agreements.' },
-        { code: '•', nom: 'Education cover', detail: 'Product of partner insurers, according to agreements.' },
-        { code: '•', nom: 'Project savings', detail: 'Product of partner insurers, according to agreements.' },
+        { code: '•', nom: 'Funeral cover', detail: 'Partner benefit, according to agreements.' },
+        { code: '•', nom: 'Complementary pension', detail: 'Partner benefit, according to agreements.' },
+        { code: '•', nom: 'Education cover', detail: 'Partner benefit, according to agreements.' },
+        { code: '•', nom: 'Project savings', detail: 'Partner benefit, according to agreements.' },
       ],
     },
   ],
 
   prosoc: {
     resume:
-      'PROSOC is the social protection programme run within MAASH. Prosoc is the management application used to steer it.',
+      'PROSOC is MAASH’s social coverage programme. It provides members with social coverage through tailored benefits and the Prosoc application.',
     fonctionnalites: [
       'Registration and administrative management of members (enrolment by the AT agent)',
       'Eligibility check and token voucher mechanism',
@@ -152,7 +152,9 @@ export default {
       { nom: 'Member', detail: 'View own contributions, profile, dependants and contact details of their AT agent.' },
       { nom: 'Team leader', detail: 'Summary of their agents’ collections: count, amount, by period (daily, weekly, monthly).' },
       { nom: 'Collector', detail: 'Collections and cash-in, weekly view of collected amounts.' },
+      { nom: 'Cashier', detail: 'Management of cash receipts, deposits and cash reconciliation.' },
       { nom: 'Supervisor', detail: 'Management of team leaders and their agents, assignment of members with full traceability.' },
+      { nom: 'Municipal supervisor', detail: 'Supervision of operations and teams at municipal level, member follow-up and reporting.' },
       { nom: 'Encoder', detail: 'Complements, control and traceability of records.' },
     ],
     regleDonnees:
@@ -241,7 +243,7 @@ export default {
       gouvernance: {
         title: 'Governance — MAASH',
         description:
-          'MAASH governance: general assembly, board, executive council and the 12 organizational units of the mutual.',
+          'MAASH governance: general assembly, board, executive committee and the 12 organizational units of the mutual.',
       },
       services: {
         title: 'Services and benefits — MAASH',
@@ -251,7 +253,7 @@ export default {
       prosoc: {
         title: 'PROSOC programme — MAASH',
         description:
-          'PROSOC: MAASH social protection programme, Prosoc application, user roles, Mobile Money and data protection.',
+          'PROSOC: MAASH social coverage programme, Prosoc application, user roles, Mobile Money and data protection.',
       },
       adhesion: {
         title: 'Membership and pricing — MAASH',
@@ -318,7 +320,7 @@ export default {
       infoRecognitionLabel: 'Recognition',
       infoRecognition: 'F92/56.275 (Ministry of Justice)',
       infoSeatLabel: 'Head office',
-      infoSeat: 'Ngaliema, Kinshasa — {pays}',
+      infoSeat: 'Silikin Village, Ngaliema, Kinshasa — {pays}',
       infoMottoLabel: 'Motto',
       stats: [
         { valeur: '4', label: 'benefit branches' },
@@ -376,7 +378,7 @@ export default {
 
     services: {
       h1: 'MAASH services',
-      hero: 'Four covered branches — Pensions, Community, Health Care and Specialized — with benefits A to J and the coverages offered by partner insurers.',
+      hero: 'Four covered branches — Pensions, Community, Health Care and Specialized — with benefits A to J and the coverages offered by partners.',
       note: 'Health rates are monthly, per family up to six people, and are added to MAASH’s monthly contributions. Detailed benefits, VIP rates, caps and exclusions are still to be provided by MAASH.',
     },
 

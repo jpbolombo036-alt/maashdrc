@@ -19,9 +19,9 @@ export default {
     apkUrl: '/apk/prod-prosoc-20.10.apk',
     email: 'contact@maashprosoc.cd',
     emailSecretariat: 'secretariat@maashprosoc.cd',
-    telephone: '+243 976 158 691',
-    telephoneHref: 'tel:+243976158691',
-    whatsappHref: 'https://wa.me/243976158691',
+    telephone: '+243 973 798 811',
+    telephoneHref: 'tel:+243973798811',
+    whatsappHref: 'https://wa.me/243973798811',
     adresse: {
       ligne1: '372, avenue Colonel Mondjiba, quartier Bassoko',
       ligne2: 'Commune de Ngaliema, Kinshasa',
@@ -69,19 +69,19 @@ export default {
 
   gouvernance: {
     introduction:
-      'La structure de MAASH est présentée en 12 blocs. Le Conseil d’Exécution comprend la Coordination Générale et les structures opérationnelles ; la CCA est un organe statutaire de contrôle, sans subordination fonctionnelle au CE. Le CA dispose de son propre secrétariat, distinct du Secrétariat Général.',
+      'La structure de MAASH est présentée en 12 blocs. Le Comité Exécutif comprend la Coordination Générale et les structures opérationnelles ; la CCA est un organe statutaire de contrôle, sans subordination fonctionnelle au CE. Le CA dispose de son propre secrétariat, distinct du Secrétariat Général.',
     blocs: [
       { nom: 'Assemblée Générale (AG)', role: 'Organe suprême de délibération des membres.' },
       { nom: 'Conseil d’Administration (CA)', role: 'Orientation stratégique ; dispose de son propre secrétariat.' },
-      { nom: 'Conseil d’Exécution (CE)', role: 'Comprend la Coordination Générale et les structures opérationnelles.' },
+      { nom: 'Comité Exécutif (CE)', role: 'Comprend la Coordination Générale et les structures opérationnelles.' },
       { nom: 'Coordination Générale (CG)', role: 'Direction opérationnelle du programme et de l’institution.' },
       { nom: 'Secrétariat Général', role: 'Coordination administrative et supports transverses.' },
-      { nom: 'Contrôle et Cour des Comptes (CCA)', role: 'Contrôle et audit, organe statutaire indépendant.' },
+      { nom: 'Commission de Contrôle et d’Audit (CCA)', role: 'Contrôle et audit, organe statutaire indépendant.' },
       { nom: 'Ressources Humaines et Socio-Humanitaire', role: 'Gestion des ressources humaines et action socio-humanitaire.' },
       { nom: 'Finances et Opérations', role: 'Gestion financière et opérationnelle.' },
       { nom: 'Numérique', role: 'Systèmes d’information et application Prosoc.' },
       { nom: 'Santé Publique', role: 'Couverture et prestations de santé.' },
-      { nom: 'Assurances', role: 'Partenariats avec les assureurs partenaires.' },
+      { nom: 'Assurances', role: 'Relations avec les partenaires assureurs.' },
       { nom: 'Communication et Relations Extérieures', role: 'Communication institutionnelle et partenariats.' },
     ],
   },
@@ -125,19 +125,19 @@ export default {
       id: 'specialisee',
       titre: 'Branche Spécialisée',
       icon: 'shield',
-      resume: 'Organisée en partenariat avec des sociétés d’assurances pour améliorer les prestations et élargir la couverture. Les produits d’assurance relèvent des partenaires ; MAASH ne les présente pas comme ses propres produits.',
+      resume: 'En collaboration avec ses partenaires pour améliorer les prestations et élargir la couverture. MAASH agit en coordination avec ses partenaires.',
       prestations: [
-        { code: '•', nom: 'Prévoyance funérailles', detail: 'Produit des assureurs partenaires, selon conventions.' },
-        { code: '•', nom: 'Retraite complémentaire', detail: 'Produit des assureurs partenaires, selon conventions.' },
-        { code: '•', nom: 'Prévoyance éducation', detail: 'Produit des assureurs partenaires, selon conventions.' },
-        { code: '•', nom: 'Épargne projet', detail: 'Produit des assureurs partenaires, selon conventions.' },
+        { code: '•', nom: 'Prévoyance funérailles', detail: 'Prestation des partenaires, selon conventions.' },
+        { code: '•', nom: 'Retraite complémentaire', detail: 'Prestation des partenaires, selon conventions.' },
+        { code: '•', nom: 'Prévoyance éducation', detail: 'Prestation des partenaires, selon conventions.' },
+        { code: '•', nom: 'Épargne projet', detail: 'Prestation des partenaires, selon conventions.' },
       ],
     },
   ],
 
   prosoc: {
     resume:
-      'PROSOC est le programme de protection sociale exécuté au sein de MAASH. Prosoc est l’application de gestion utilisée pour son pilotage.',
+      'PROSOC est le programme de couverture sociale de MAASH. Il permet d’assurer une couverture sociale aux adhérents grâce à des prestations adaptées et à l’application Prosoc.',
     fonctionnalites: [
       'Enregistrement et gestion administrative des affiliés (adhésion par l’agent AT)',
       'Vérification d’éligibilité et mécanisme du bon de jeton',
@@ -153,7 +153,9 @@ export default {
       { nom: 'Affilié', detail: 'Consultation de ses cotisations, profil, personnes à charge et coordonnées de son agent AT.' },
       { nom: 'Chef d’équipe', detail: 'Résumé des collectes de ses agents : nombre, montant, par période (journalier, hebdomadaire, mensuel).' },
       { nom: 'Percepteur', detail: 'Collectes et encaissements, consultation hebdomadaire des montants collectés.' },
+      { nom: 'Caissier', detail: 'Gestion des encaissements, des dépôts et du rapprochement de caisse.' },
       { nom: 'Superviseur', detail: 'Gestion des chefs d’équipe et de leurs agents, affectation des affiliés avec traçabilité.' },
+      { nom: 'Superviseur communal', detail: 'Supervision des opérations et des équipes au niveau communal, suivi des affiliés et remontée des rapports.' },
       { nom: 'Encodeur', detail: 'Compléments, contrôle et traçabilité des dossiers.' },
     ],
     regleDonnees:
@@ -242,7 +244,7 @@ export default {
       gouvernance: {
         title: 'Gouvernance — MAASH',
         description:
-          'Gouvernance MAASH : assemblée générale, conseil d’administration, conseil d’exécution et les 12 blocs organisationnels de la mutuelle.',
+          'Gouvernance MAASH : assemblée générale, conseil d’administration, comité exécutif et les 12 blocs organisationnels de la mutuelle.',
       },
       services: {
         title: 'Services et prestations — MAASH',
@@ -252,12 +254,12 @@ export default {
       prosoc: {
         title: 'Programme PROSOC — MAASH',
         description:
-          'PROSOC : programme de protection sociale de MAASH, application Prosoc, rôles utilisateurs, Mobile Money et protection des données.',
+          'PROSOC : programme de couverture sociale de MAASH, application Prosoc, rôles utilisateurs, Mobile Money et protection des données.',
       },
       adhesion: {
         title: 'Adhésion et tarifs — MAASH',
         description:
-          'Formules MAASH de Solo (2 USD) à F6 (9 USD) par mois : documents requis, personnes à charge et paiement Mobile Money ou Visa.',
+          'Formules MAASH de Solo (2 USD) à F6 (1.5 USD) par mois : documents requis, personnes à charge et paiement Mobile Money ou Visa.',
       },
       contact: {
         title: 'Contact — MAASH',
@@ -309,7 +311,7 @@ export default {
       joinMaash: 'Adhérer sur MAASH',
       contactUs: 'Nous contacter',
       discoverServices: 'Découvrir nos services',
-      downloadApp: 'Télécharger l’application',
+      downloadApp: 'Télécharger l’application Prosoc',
     },
 
     home: {
@@ -319,13 +321,13 @@ export default {
       infoRecognitionLabel: 'Reconnaissance',
       infoRecognition: 'F92/56.275 (Ministère de la Justice)',
       infoSeatLabel: 'Siège',
-      infoSeat: 'Ngaliema, Kinshasa — {pays}',
+      infoSeat: 'Silikin Village, Ngaliema, Kinshasa — {pays}',
       infoMottoLabel: 'Devise',
       stats: [
         { valeur: '4', label: 'branches de prestations' },
         { valeur: '4', label: 'districts couverts à Kinshasa' },
         { valeur: '24', label: 'communes visées à Kinshasa' },
-        { valeur: '2 USD', label: 'cotisation mensuelle dès le Solo' },
+        { valeur: '1.5 USD', label: 'cotisation mensuelle par personnes par familles' },
       ],
       whoBadge: 'Qui sommes-nous',
       whoTitle: 'Une mutuelle de protection sociale pour tous',
@@ -344,7 +346,7 @@ export default {
       discoverProgram: 'Découvrir le programme',
       memberBadge: 'Devenir membre',
       memberTitle: 'Rejoignez MAASH dès aujourd’hui',
-      memberSubtitle: 'Adhésion à {fee} Formules à partir de {price} par mois.',
+      memberSubtitle: 'Adhésion à {fee} Formules des cotiations à partir de {fee} par personnes par familles.',
       viewPrices: 'Voir les tarifs',
     },
 
@@ -377,7 +379,7 @@ export default {
 
     services: {
       h1: 'Services de MAASH',
-      hero: 'Quatre branches couvertes — Pensions, Communautaire, Soins de santé et Spécialisée — avec les prestations A à J et les couvertures proposées par les assureurs partenaires.',
+      hero: 'Quatre branches couvertes — Pensions, Communautaire, Soins de santé et Spécialisée — avec les prestations A à J et les couvertures proposées par les partenaires.',
       note: 'Les tarifs santé sont mensuels, par famille jusqu’à six personnes, et s’ajoutent aux cotisations mensuelles MAASH. Les prestations détaillées, tarifs VIP, plafonds et exclusions restent à fournir par MAASH.',
     },
 

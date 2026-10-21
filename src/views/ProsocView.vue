@@ -62,7 +62,7 @@ const { maash, prosoc, cibles } = useContent()
           <h2>{{ t('ui.prosoc.ctaTitle') }}</h2>
           <p>{{ t('ui.prosoc.ctaText') }}</p>
         </div>
-        <a :href="maash.prosocAdhesionUrl" class="btn btn-white" target="_blank" rel="noopener">
+        <a :href="maash.prosocAdhesionUrl" class="btn btn-white">
           {{ t('ui.common.joinMaash') }}
         </a>
         <a :href="maash.apkUrl" class="btn btn-ghost" download>

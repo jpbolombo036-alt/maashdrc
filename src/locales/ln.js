@@ -19,9 +19,9 @@ export default {
     apkUrl: '/apk/prod-prosoc-20.10.apk',
     email: 'contact@maashprosoc.cd',
     emailSecretariat: 'secretariat@maashprosoc.cd',
-    telephone: '+243 976 158 691',
-    telephoneHref: 'tel:+243976158691',
-    whatsappHref: 'https://wa.me/243976158691',
+    telephone: '+243 973 798 811',
+    telephoneHref: 'tel:+243973798811',
+    whatsappHref: 'https://wa.me/243973798811',
     adresse: {
       ligne1: '372, avenue Colonel Mondjiba, maanda ya Bassoko',
       ligne2: 'Komun ya Ngaliema, Kinshasa',
@@ -69,19 +69,19 @@ export default {
 
   gouvernance: {
     introduction:
-      'Boyungani bwa MAASH bolakamaki na makambo 12. Conseil ya Kosala makambo ezali na Bokonzi ya Malamu pamasaka na bango ba kosala; CCA eza na bikalo bya yango moko, te na bokonzi bwa CE. CA eza na sekreteri ya yango moko, ebandeli na Sekreteri ya Mokolo.',
+      'Boyungani bwa MAASH bolakamaki na makambo 12. Komite ya Kosala makambo ezali na Bokonzi ya Malamu pamasaka na bango ba kosala; CCA eza na bikalo bya yango moko, te na bokonzi bwa CE. CA eza na sekreteri ya yango moko, ebandeli na Sekreteri ya Mokolo.',
     blocs: [
       { nom: 'Bandaka ya Bato (AG)', role: 'Bikalo bikulu bya koyungisa makambo na memba.' },
       { nom: 'Conseil ya Bokonzi (CA)', role: 'Boyebisi bwa makambo; eza na sekreteri ya yango moko.' },
-      { nom: 'Conseil ya Kosala makambo (CE)', role: 'Ezali na Bokonzi ya Malamu pamasaka na bango ba kosala.' },
+      { nom: 'Komite ya Kosala makambo (CE)', role: 'Ezali na Bokonzi ya Malamu pamasaka na bango ba kosala.' },
       { nom: 'Bokonzi ya Malamu pamasaka (CG)', role: 'Boyebisi bwa sili bwa programme na institusion.' },
       { nom: 'Sekreteri ya Mokolo', role: 'Bongoli ya ba administrator na bango ba koyokolama.' },
-      { nom: 'Kolakisa na Kamera ya Maboko (CCA)', role: 'Kolakisa na kolandalisa, bikalo bya yango moko.' },
+      { nom: 'Komisio ya Contrôle mpe Audit (CCA)', role: 'Kolakisa na kolandalisa, bikalo bya yango moko.' },
       { nom: 'Bango ba Sili na Sosyo-Humanitaire', role: 'Bokonzi bwa bango ba sili na misapi ya sosyo-humanitaire.' },
       { nom: 'Mbongo na Bango ba kosala', role: 'Bokonzi bwa mbongo na bango ba kosala.' },
       { nom: 'Digital', role: 'Mikongo ya data na application ya Prosoc.' },
       { nom: 'Mwasu ya Bato', role: 'Bokobatami na basombo ya mwasu.' },
-      { nom: 'Taifansi', role: 'Bapartneri na bango ba taifansi ya pamba.' },
+      { nom: 'Taifansi', role: 'Boyokani na bapartneri ya taifansi.' },
       { nom: 'Komunikasion na Yebisa na Monde', role: 'Komunikasion ya institusion na bapartneri.' },
     ],
   },
@@ -125,19 +125,19 @@ export default {
       id: 'specialisee',
       titre: 'Minda ya Singa',
       icon: 'shield',
-      resume: 'Eyungani na bango ba taifansi ya pamba moko ba basombo na kotongola bokobatami. Basombo ya taifansi baza na bapartneri; MAASH etiki yango te ya nkombo.',
+      resume: 'Na boyokani na bapartner na yango mpo na kobongisa ba prestation mpe kokolisa couverture. MAASH esalaka na boyokani na bapartner na yango.',
       prestations: [
-        { code: '•', nom: 'Lisalu ya bakufi', detail: 'Basombo bwa bataifansi ba partneri, na ndenge ya bango.' },
-        { code: '•', nom: 'Bokolo ya dongokolo', detail: 'Basombo bwa bataifansi ba partneri, na ndenge ya bango.' },
-        { code: '•', nom: 'Sanza', detail: 'Basombo bwa bataifansi ba partneri, na ndenge ya bango.' },
-        { code: '•', nom: 'Mosimboli ya mokolo', detail: 'Basombo bwa bataifansi ba partneri, na ndenge ya bango.' },
+        { code: '•', nom: 'Lisalu ya bakufi', detail: 'Prestation ya bapartner, na ndenge ya boyokani.' },
+        { code: '•', nom: 'Bokolo ya dongokolo', detail: 'Prestation ya bapartner, na ndenge ya boyokani.' },
+        { code: '•', nom: 'Sanza', detail: 'Prestation ya bapartner, na ndenge ya boyokani.' },
+        { code: '•', nom: 'Mosimboli ya mokolo', detail: 'Prestation ya bapartner, na ndenge ya boyokani.' },
       ],
     },
   ],
 
   prosoc: {
     resume:
-      'PROSOC programme ya kobatela bomoto ya kotekwa na MAASH. Prosoc application ya kobongola etikali na kotekwa yango.',
+      'PROSOC ezali programme ya couverture sociale ya MAASH. Esalisaka ba affilié bazwa couverture sociale na nzela ya ba prestation oyo ebongi mpe application Prosoc.',
     fonctionnalites: [
       'Kosala na bango ba memba na bokongoli ya ba administrator (bokoyani na agent ya AT)',
       'Kokufola na bolingo na ndenge ya bon ya jeton',
@@ -153,7 +153,9 @@ export default {
       { nom: 'Moto ya memba', detail: 'Kotala cotizasion na ye, profil na ye, bato bako belengaki na contacts ya agent na ye AT.' },
       { nom: 'Chef ya ekipi', detail: 'Boyekoli bwa makambo ma bango ba agent: mibale, ntango, na ngana (ya mokolo, ya sikamusu, ya mwezi).' },
       { nom: 'Mokoli mbongo', detail: 'Kokoli mbongo na kotika, kotala ntango ya sikamusu moya ya ntango ezokolaki.' },
+      { nom: 'Mokambi ya caisse', detail: 'Bokambi ya mbongo oyo efutami, ba dépôt mpe boyokani ya caisse.' },
       { nom: 'Mokanisi', detail: 'Bokonzi bwa bana ba chef ya ekipi na bango ba agent, kobikama memba na koyebisa makambo moko.' },
+      { nom: 'Mokanisi ya commune', detail: 'Bokambi ya misala mpe biteni na nivo ya commune, kolanda ba affilié mpe kotinda ba rapɔ́r.' },
       { nom: 'Encodeur', detail: 'Bikisi, kolakisa na koyebisa makambo ma dossiers.' },
     ],
     regleDonnees:
@@ -242,7 +244,7 @@ export default {
       gouvernance: {
         title: 'Bokonzi — MAASH',
         description:
-          'Bokonzi bwa MAASH: bandaka ya bato, conseil ya bokonzi, conseil ya kosala makambo na makambo 12 ya boyungani ya mutuelle.',
+          'Bokonzi bwa MAASH: bandaka ya bato, conseil ya bokonzi, komite ya kosala makambo na makambo 12 ya boyungani ya mutuelle.',
       },
       services: {
         title: 'Basombo na taifansi — MAASH',
@@ -252,7 +254,7 @@ export default {
       prosoc: {
         title: 'Programme ya PROSOC — MAASH',
         description:
-          'PROSOC: programme ya kobatela bomoto ya MAASH, application ya Prosoc, bikolo bya bato, Mobile Money na kobatela ba data.',
+          'PROSOC: programme ya couverture sociale ya MAASH, application ya Prosoc, bikolo bya bato, Mobile Money na kobatela ba data.',
       },
       adhesion: {
         title: 'Bokoyani na ba taifansi — MAASH',
@@ -319,7 +321,7 @@ export default {
       infoRecognitionLabel: 'Koyembo',
       infoRecognition: 'F92/56.275 (Ministeré ya Lisawa)',
       infoSeatLabel: 'Bikalo',
-      infoSeat: 'Ngaliema, Kinshasa — {pays}',
+      infoSeat: 'Silikin Village, Ngaliama, Kinshasa — {pays}',
       infoMottoLabel: 'Lisolo',
       stats: [
         { valeur: '4', label: 'minda ya basombo' },
@@ -376,7 +378,7 @@ export default {
 
     services: {
       h1: 'Basombo ya MAASH',
-      hero: 'Minda minei ebatamiwe — na basombo A na J, na bokobatami bwa bango ba taifansi ya pamba.',
+      hero: 'Minda minei ebatamiwe — na basombo A na J, na bokobatami bwa bango ba partner.',
       note: 'Ba taifansi ya mwasu azali na mwezi, na ndako ntango na bantu 6, na ezongwami na cotizasion ya mwezi ya MAASH. Ba taifansi misusu, ba VIP, ba nkisi na bawuli te, bazali na kotindama na MAASH.',
     },
 

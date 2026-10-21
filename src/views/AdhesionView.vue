@@ -95,8 +95,6 @@ const { cibles, maash } = useContent()
             <a
               :href="maash.prosocAdhesionUrl"
               class="btn btn-white"
-              target="_blank"
-              rel="noopener"
             >
               {{ t('ui.common.joinMaash') }}
             </a>

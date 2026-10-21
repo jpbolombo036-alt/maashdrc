@@ -103,16 +103,12 @@ onUnmounted(() => document.removeEventListener('click', closeLangMenu))
           <a
             :href="maash.prosocLoginUrl"
             class="btn btn-outline nav-cta nav-login"
-            target="_blank"
-            rel="noopener"
           >
             {{ t('ui.nav.login') }}
           </a>
           <a
             :href="maash.prosocAdhesionUrl"
             class="btn btn-primary nav-cta"
-            target="_blank"
-            rel="noopener"
           >
             {{ t('ui.nav.join') }}
           </a>

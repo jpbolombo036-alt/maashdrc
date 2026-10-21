@@ -62,7 +62,7 @@ onUnmounted(() => {
           <p class="hero-slogan-lingala">{{ maash.sloganLingala }}</p>
           <p class="hero-text">{{ presentation.resume }}</p>
           <div class="hero-actions">
-            <a :href="maash.prosocAdhesionUrl" class="btn btn-white" target="_blank" rel="noopener">
+            <a :href="maash.prosocAdhesionUrl" class="btn btn-white">
               {{ t('ui.common.joinMaash') }}
             </a>
             <router-link to="/services" class="btn btn-ghost">{{ t('ui.common.discoverServices') }}</router-link>
