@@ -312,6 +312,7 @@ export default {
       contactUs: 'Yokana na biso',
       discoverServices: 'Tala basombo biso',
       downloadApp: 'Downloada application',
+      whatsapp: 'Solola MAASH na WhatsApp',
     },
 
     home: {

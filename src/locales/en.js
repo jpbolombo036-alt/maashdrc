@@ -311,6 +311,7 @@ export default {
       contactUs: 'Contact us',
       discoverServices: 'Discover our services',
       downloadApp: 'Download the app',
+      whatsapp: 'Contact MAASH on WhatsApp',
     },
 
     home: {

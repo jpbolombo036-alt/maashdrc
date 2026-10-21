@@ -312,6 +312,7 @@ export default {
       contactUs: 'Nous contacter',
       discoverServices: 'Découvrir nos services',
       downloadApp: 'Télécharger l’application Prosoc',
+      whatsapp: 'Contacter MAASH sur WhatsApp',
     },
 
     home: {
