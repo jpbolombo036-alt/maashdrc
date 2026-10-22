@@ -16,8 +16,8 @@ export default {
     prosocAdhesionUrl: 'https://prosoc.maashrdc.com/adhesions/create',
     prosocLoginUrl: 'https://prosoc.maashrdc.com/login',
     apkUrl: '/apk/prod-prosoc-20.10.apk',
-    email: 'contact@maashprosoc.cd',
-    emailSecretariat: 'secretariat@maashprosoc.cd',
+    email: 'secretariatmaash@gmail.com',
+    emailSecretariat: 'secretariatmaash@gmail.com',
     telephone: '+243 973 798 811',
     telephoneHref: 'tel:+243973798811',
     whatsappHref: 'https://wa.me/243973798811',
@@ -115,7 +115,7 @@ export default {
       icon: 'heart',
       resume: 'Three types of care, up to six people per family. Monthly family rates, in addition to contributions. Access from the month following payment.',
       prestations: [
-        { code: 'H', nom: 'Standard category', detail: 'Reference hospitals. 19 USD / month / family (up to 6 people).' },
+        { code: 'H', nom: 'Standard category', detail: 'Reference hospitals. 20 USD / month / family (up to 6 people).' },
         { code: 'I', nom: 'VIP health care', detail: 'High-quality private hospitals. Rates: to be completed.' },
         { code: 'J', nom: 'Community health care', detail: 'Local health centres. From 10 USD / month / family (up to 6 people).' },
       ],
@@ -196,6 +196,7 @@ export default {
     voir: 'See the hospital list',
     fermer: 'Close',
     repere: 'Landmark',
+    tarif: 'Rate',
     itineraire: 'Directions',
     aVenir: 'More facilities will be added soon.',
     liste: [
@@ -216,6 +217,33 @@ export default {
         commune: 'Masina',
       },
     ],
+    vip: {
+      titre: 'Partner private hospitals — VIP health care',
+      liste: [
+        { nom: 'Monkole', tarif: '70 $, 80 $, 95 $; 190 $ — global plan', repere: 'Mont-Ngafula: Ngafani Avenue no. 4808' },
+        { nom: 'Mongala', tarif: '135 $; 190 $ — global plan', repere: 'Gombe: Mongala Avenue, CCTV / Canal Kin landmark' },
+        { nom: 'Ngaliema Center', tarif: '145 $', repere: 'Kintambo, near the store' },
+        { nom: 'Clinique Ngaliema', tarif: '175 $', repere: 'Ngaliema' },
+        { nom: 'D.H.K — De Smet Hospital of Kinsuka', tarif: '145 $', repere: 'Ngaliema: Avenue de l’École no. 2; Gombe: Boulevard du 30 Juin no. 374' },
+        { nom: 'Centre de Santé de Référence de Kimbondo', tarif: '20 $', repere: 'Bandalungwa: Chef Kinzonzi Avenue no. 283' },
+        { nom: 'Centre Hospitalier Shekina', tarif: '20 $, 30 $, 40 $, 70 $', repere: 'Barumbu: Cadastre Avenue no. 4014, Ndolo' },
+        { nom: 'Promedis', tarif: '40 $, 70 $', repere: 'Limete, Matete, Ngaliema, Mont-Ngafula and N’Sele/Kinkole' },
+        { nom: 'Saint Vincent de Paul', tarif: '30 $', repere: 'N’Sele: Ilaka Avenue no. 7, Bibwa' },
+        { nom: 'HJ Hospitals', repere: 'Address to be confirmed' },
+        { nom: 'Saint Joseph', tarif: '65 $ single; 70 $ family', repere: 'Limete: 15th Street, Residential district' },
+        { nom: 'Centre Hospitalier Nganda', repere: 'Kintambo: Haute Tension Avenue no. 3816' },
+        { nom: 'Centre Hospitalier Roi Baudouin Ier', tarif: '20 $', repere: 'Masina: Bolenge Avenue no. 28' },
+        { nom: 'Clinique Diamant', repere: 'Gombe: Boulevard du 30 Juin no. 3642' },
+        { nom: 'Clinique IK (CIK)', tarif: '70 $, 145 $', repere: 'Ngaliema: Kwango Avenue no. 3, Joli-Parc' },
+        { nom: 'Open Clinic', tarif: '40 $, 70 $', repere: 'Gombe: Oranger and 24 Novembre Avenues, opposite UBA' },
+        { nom: 'Centre Hospitalier Médecin de Nuit', repere: 'Gombe: Province Avenue no. 4744' },
+        { nom: 'Centre Hospitalier Boyambi — Salvation Army', repere: 'Barumbu: Kasaï Avenue no. 12' },
+        { nom: 'Clinique Oasis de Vie', tarif: '30 $; 45 $, 70 $, 125 $', repere: 'Barumbu: Kabambare Avenue no. 6050' },
+        { nom: 'Centre Hospitalier Bolingani', tarif: '30 $; 40 $', repere: 'Ngaliema: Songe Avenue no. 1, Musey Binza Ozone' },
+        { nom: 'Polyclinique de Kinshasa', repere: 'Gombe: Flamboyant Avenue no. 34' },
+        { nom: 'IK Medical Center', tarif: '30 $', repere: 'Ngaliema: Done Béatrice Avenue no. 22' },
+      ],
+    },
   },
 
   recrutement: {
@@ -255,6 +283,10 @@ export default {
         description:
           'PROSOC: MAASH social coverage programme, Prosoc application, user roles, Mobile Money and data protection.',
       },
+      activites: {
+        title: 'Activities — MAASH',
+        description: 'Discover MAASH activities: consultation, support, community engagement and socio-humanitarian assistance.',
+      },
       adhesion: {
         title: 'Membership and pricing — MAASH',
         description:
@@ -283,6 +315,7 @@ export default {
       services: 'Services',
       prosoc: 'PROSOC',
       adhesion: 'Membership',
+      activites: 'Activities',
       contact: 'Contact',
       join: 'Join',
       login: 'Log in',
@@ -394,6 +427,17 @@ export default {
       ctaTitle: 'Join MAASH right now',
       ctaText:
         'Membership, contribution payments and tracking of your record online, all made simple.',
+    },
+
+    activites: {
+      h1: 'MAASH activities',
+      hero: 'Discover the actions and initiatives carried out by MAASH for members and communities.',
+      badge: 'Our field action',
+      title: 'MAASH activities',
+      subtitle: 'A local presence to listen, support and improve coverage for families.',
+      futureBadge: 'Coming soon',
+      futureTitle: 'Share MAASH activities',
+      futureText: 'This gallery will be expanded with photos and reports from upcoming MAASH activities.',
     },
 
     adhesion: {

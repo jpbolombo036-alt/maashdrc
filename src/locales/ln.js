@@ -17,8 +17,8 @@ export default {
     prosocAdhesionUrl: 'https://prosoc.maashrdc.com/adhesions/create',
     prosocLoginUrl: 'https://prosoc.maashrdc.com/login',
     apkUrl: '/apk/prod-prosoc-20.10.apk',
-    email: 'contact@maashprosoc.cd',
-    emailSecretariat: 'secretariat@maashprosoc.cd',
+    email: 'secretariatmaash@gmail.com',
+    emailSecretariat: 'secretariatmaash@gmail.com',
     telephone: '+243 973 798 811',
     telephoneHref: 'tel:+243973798811',
     whatsappHref: 'https://wa.me/243973798811',
@@ -116,7 +116,7 @@ export default {
       icon: 'heart',
       resume: 'Mila mibale ya mwasu, mpaka bantu 6 na ndako ntango. Taifansi ya mwezi na ndako ntango, na kokwama cotizasion. Kokamwa na mwezi eyokanaki na kotikwa.',
       prestations: [
-        { code: 'H', nom: 'Kategori ya banambo', detail: 'Bolongo ya referans. 19 USD / mwezi / ndako ntango (mpaka bantu 6).' },
+        { code: 'H', nom: 'Kategori ya banambo', detail: 'Bolongo ya referans. 20 USD / mwezi / ndako ntango (mpaka bantu 6).' },
         { code: 'I', nom: 'Mwasu ya VIP', detail: 'Bolongo ya bokwasani ya lingi. Taifansi: koyebisa.' },
         { code: 'J', nom: 'Mwasu ya komunauté', detail: 'Bolongo ya mwasu ya makambo. Kuanza na 10 USD / mwezi / ndako ntango (mpaka bantu 6).' },
       ],
@@ -197,6 +197,7 @@ export default {
     voir: 'Tala lita ya bolongo',
     fermer: 'Efungola',
     repere: 'Repère',
+    tarif: 'Ntalo',
     itineraire: 'Nzela ya kokende',
     aVenir: 'Banakisi misusu bazongwama sikasusu.',
     liste: [
@@ -217,6 +218,33 @@ export default {
         commune: 'Masina',
       },
     ],
+    vip: {
+      titre: 'Babolongo ya privé ya bapartner — mwasu VIP',
+      liste: [
+        { nom: 'Monkole', tarif: '70 $, 80 $, 95 $; 190 $ — formule mobimba', repere: 'Mont-Ngafula: avenue Ngafani n° 4808' },
+        { nom: 'Mongala', tarif: '135 $; 190 $ — formule mobimba', repere: 'Gombe: avenue ya Mongala' },
+        { nom: 'Ngaliema Center', tarif: '145 $', repere: 'Kintambo' },
+        { nom: 'Clinique Ngaliema', tarif: '175 $', repere: 'Ngaliema' },
+        { nom: 'D.H.K — De Smet Hospital of Kinsuka', tarif: '145 $', repere: 'Ngaliema mpe Gombe' },
+        { nom: 'Centre de Santé de Référence de Kimbondo', tarif: '20 $', repere: 'Bandalungwa: avenue Chef Kinzonzi n° 283' },
+        { nom: 'Centre Hospitalier Shekina', tarif: '20 $, 30 $, 40 $, 70 $', repere: 'Barumbu: avenue Cadastre n° 4014' },
+        { nom: 'Promedis', tarif: '40 $, 70 $', repere: 'Limete, Matete, Ngaliema, Mont-Ngafula mpe N’Sele/Kinkole' },
+        { nom: 'Saint Vincent de Paul', tarif: '30 $', repere: 'N’Sele: avenue Ilaka n° 7, Bibwa' },
+        { nom: 'HJ Hospitals', repere: 'Adresse ekotala' },
+        { nom: 'Saint Joseph', tarif: '65 $ moto moko; 70 $ libota', repere: 'Limete: balabala ya 15, quartier Résidentiel' },
+        { nom: 'Centre Hospitalier Nganda', repere: 'Kintambo: avenue Haute Tension n° 3816' },
+        { nom: 'Centre Hospitalier Roi Baudouin Ier', tarif: '20 $', repere: 'Masina: avenue Bolenge n° 28' },
+        { nom: 'Clinique Diamant', repere: 'Gombe: boulevard ya 30 Juin n° 3642' },
+        { nom: 'Clinique IK (CIK)', tarif: '70 $, 145 $', repere: 'Ngaliema: avenue Kwango n° 3' },
+        { nom: 'Open Clinic', tarif: '40 $, 70 $', repere: 'Gombe: avenues Oranger mpe 24 Novembre' },
+        { nom: 'Centre Hospitalier Médecin de Nuit', repere: 'Gombe: avenue Province n° 4744' },
+        { nom: 'Centre Hospitalier Boyambi — Armée du Salut', repere: 'Barumbu: avenue Kasaï n° 12' },
+        { nom: 'Clinique Oasis de Vie', tarif: '30 $; 45 $, 70 $, 125 $', repere: 'Barumbu: avenue Kabambare n° 6050' },
+        { nom: 'Centre Hospitalier Bolingani', tarif: '30 $; 40 $', repere: 'Ngaliema: avenue Songe n° 1' },
+        { nom: 'Polyclinique de Kinshasa', repere: 'Gombe: avenue Flamboyant n° 34' },
+        { nom: 'IK Medical Center', tarif: '30 $', repere: 'Ngaliema: avenue Done Béatrice n° 22' },
+      ],
+    },
   },
 
   recrutement: {
@@ -256,6 +284,10 @@ export default {
         description:
           'PROSOC: programme ya couverture sociale ya MAASH, application ya Prosoc, bikolo bya bato, Mobile Money na kobatela ba data.',
       },
+      activites: {
+        title: 'Misala — MAASH',
+        description: 'Tala misala ya MAASH: koyoka, kosalisa, boyokani na communauté mpe lisalisi socio-humanitaire.',
+      },
       adhesion: {
         title: 'Bokoyani na ba taifansi — MAASH',
         description:
@@ -284,6 +316,7 @@ export default {
       services: 'Basombo',
       prosoc: 'PROSOC',
       adhesion: 'Bokoyani',
+      activites: 'Misala',
       contact: 'Koyokana',
       join: 'Koyana',
       login: 'Login',
@@ -394,6 +427,17 @@ export default {
       ctaTitle: 'Yana na MAASH na lelo sikasusu',
       ctaText:
         'Koyana, kotika cotizasion, na kotala dossiers ya yo na internet — na sili esengeli.',
+    },
+
+    activites: {
+      h1: 'Misala ya MAASH',
+      hero: 'Tala misala mpe makambo MAASH esalaka mpo na kosalisa ba memba mpe ba communauté.',
+      badge: 'Misala na esika',
+      title: 'Misala ya MAASH',
+      subtitle: 'Kozala pene ya bato mpo na koyoka, kosalisa mpe kobongisa couverture ya mabota.',
+      futureBadge: 'Ezali koya',
+      futureTitle: 'Kabola misala ya MAASH',
+      futureText: 'Galerie oyo ekobakisama na bafɔ́tɔ mpe masolo ya misala ya MAASH oyo ekoya.',
     },
 
     adhesion: {

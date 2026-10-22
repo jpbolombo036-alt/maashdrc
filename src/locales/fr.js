@@ -17,8 +17,8 @@ export default {
     prosocAdhesionUrl: 'https://prosoc.maashrdc.com/adhesions/create',
     prosocLoginUrl: 'https://prosoc.maashrdc.com/login',
     apkUrl: '/apk/prod-prosoc-20.10.apk',
-    email: 'contact@maashprosoc.cd',
-    emailSecretariat: 'secretariat@maashprosoc.cd',
+    email: 'secretariatmaash@gmail.com',
+    emailSecretariat: 'secretariatmaash@gmail.com',
     telephone: '+243 973 798 811',
     telephoneHref: 'tel:+243973798811',
     whatsappHref: 'https://wa.me/243973798811',
@@ -47,7 +47,7 @@ export default {
 
   presentation: {
     resume:
-      'MAASH est la Mutuelle Autorisée d’Assistance Socio-Humanitaire, une mutuelle de protection sociale sans but lucratif. Elle exécute le programme PROSOC, soutenu par l’application Prosoc.',
+      'MAASH est la Mutuelle Autorisée d’Assistance Socio-Humanitaire, une mutuelle de couverture de protection sociale sans but lucratif. Elle exécute le programme PROSOC, soutenu par l’application Prosoc.',
     raisonCreation:
       'Atténuer les effets des chocs économiques et sociaux et étendre progressivement la protection sociale, notamment au secteur informel, par une protection de base pour les personnes sans couverture et une protection complémentaire pour celles déjà protégées.',
     missions: [
@@ -107,7 +107,7 @@ export default {
         { code: 'D', nom: 'Cantine alimentaire', detail: 'Accès à des produits agro-pastoraux à bas prix, dès disponibilité.' },
         { code: 'E', nom: 'Assistance juridique', detail: 'Accompagnement gratuit pour les procédures judiciaires du membre, après approbation.' },
         { code: 'F', nom: 'Formations professionnelles', detail: 'Encadrement de la jeunesse pour l’apprentissage gratuit de différents métiers, dès disponibilité.' },
-        { code: 'G', nom: 'Hébergement', detail: 'Prise en charge gratuite des personnes âgées et très vulnérables, dès disponibilité.' },
+        { code: 'G', nom: 'Hébergement', detail: 'Facilitation de l’accès au logement et au crédit immobilier, avec une prise en charge gratuite des personnes âgées et des personnes très vulnérables, selon les disponibilités.' },
       ],
     },
     {
@@ -116,7 +116,7 @@ export default {
       icon: 'heart',
       resume: 'Trois types de soins, jusqu’à six personnes par famille. Tarifs mensuels par famille, en supplément des cotisations. Accès dès le mois suivant le paiement.',
       prestations: [
-        { code: 'H', nom: 'Catégorie standard', detail: 'Hôpitaux de référence. 19 USD / mois / famille (jusqu’à 6 personnes).' },
+        { code: 'H', nom: 'Catégorie standard', detail: 'Hôpitaux de référence. 20 USD / mois / famille (jusqu’à 6 personnes).' },
         { code: 'I', nom: 'Soins de santé VIP', detail: 'Centres hospitaliers privés de haute qualité. Tarifs : à compléter.' },
         { code: 'J', nom: 'Soins de santé communautaires', detail: 'Centres de santé locaux. À partir de 10 USD / mois / famille (jusqu’à 6 personnes).' },
       ],
@@ -125,12 +125,12 @@ export default {
       id: 'specialisee',
       titre: 'Branche Spécialisée',
       icon: 'shield',
-      resume: 'En collaboration avec ses partenaires pour améliorer les prestations et élargir la couverture. MAASH agit en coordination avec ses partenaires.',
+      resume: 'En collaboration avec ses partenaires pour améliorer nos prestations et élargir la couverture.',
       prestations: [
-        { code: '•', nom: 'Prévoyance funérailles', detail: 'Prestation des partenaires, selon conventions.' },
-        { code: '•', nom: 'Retraite complémentaire', detail: 'Prestation des partenaires, selon conventions.' },
-        { code: '•', nom: 'Prévoyance éducation', detail: 'Prestation des partenaires, selon conventions.' },
-        { code: '•', nom: 'Épargne projet', detail: 'Prestation des partenaires, selon conventions.' },
+        { code: '•', nom: 'Allocations de décès', detail: 'Pour une meilleure prise en charge des funérailles de nos membres.' },
+        { code: '•', nom: 'Allocations de vieillesse', detail: 'Pour une retraite planifiée selon nos besoins.' },
+        { code: '•', nom: 'Formations professionnelles', detail: 'Vers une scolarisation sûre, planifiée et durable.' },
+        { code: '•', nom: 'Microcrédit', detail: 'Crédit complémentaire et accompagnement des partenaires pour la réalisation de nos projets d’avenir.' },
       ],
     },
   ],
@@ -146,7 +146,7 @@ export default {
       'Reçu imprimable après adhésion ou cotisation : référence, affilié, type d’opération, montant, date et agent',
       'Historique des cotisations consultable par l’affilié (montant, date, période, statut)',
       'Portefeuille (wallet) de l’agent avec demande de rechargement et suivi du statut',
-      'Indicateurs de performance : targets journalier, hebdomadaire et mensuel',
+      'Indicateurs de performance : target journalier, hebdomadaire et mensuel',
     ],
     roles: [
       { nom: 'Agent AT (agent de terrain)', detail: 'Adhésion, cotisations, impression des reçus, wallet et indicateurs de performance.' },
@@ -154,12 +154,12 @@ export default {
       { nom: 'Chef d’équipe', detail: 'Résumé des collectes de ses agents : nombre, montant, par période (journalier, hebdomadaire, mensuel).' },
       { nom: 'Percepteur', detail: 'Collectes et encaissements, consultation hebdomadaire des montants collectés.' },
       { nom: 'Caissier', detail: 'Gestion des encaissements, des dépôts et du rapprochement de caisse.' },
-      { nom: 'Superviseur', detail: 'Gestion des chefs d’équipe et de leurs agents, affectation des affiliés avec traçabilité.' },
+      { nom: 'Superviseur', detail: 'Gestion des chefs d’équipes et de leurs agents, affectation des affiliés avec traçabilité.' },
       { nom: 'Superviseur communal', detail: 'Supervision des opérations et des équipes au niveau communal, suivi des affiliés et remontée des rapports.' },
       { nom: 'Encodeur', detail: 'Compléments, contrôle et traçabilité des dossiers.' },
     ],
     regleDonnees:
-      'Les agents de terrain ne collectent pas de données sanitaires ou cliniques ; ces données ne sont pas stockées dans Prosoc. Elles relèvent des services habilités MAASH et des prestataires sanitaires.',
+      'Les agents de terrain ne collectent pas des données sanitaires ou cliniques ; ces données ne sont pas stockées dans Prosoc. Elles relèvent des services habilités MAASH et des prestataires sanitaires.',
   },
 
   cibles: {
@@ -168,7 +168,7 @@ export default {
       'Enfants de 0 à 17 ans — aucune condition documentaire, identité complète à renseigner.',
       'Enfants de 18 à 25 ans inclus encore étudiants — sur justificatif scolaire.',
       'Conjoint dès 18 ans.',
-      'Personnes de 56 ans et plus.',
+      'Personnes âgées de 56 ans et plus.',
     ],
     documents: [
       'Identité complète pour tous.',
@@ -184,9 +184,9 @@ export default {
       { nom: 'F6', composition: 'Adhérent + 5 personnes à charge', prix: '9 USD' },
     ],
     adherence: '1,50 USD pour l’adhérent à l’inscription, puis à chaque renouvellement annuel.',
-    remarqueFormules: 'Les formules F3 à F6 correspondent à 1,50 USD par personne et par mois.',
+    remarqueFormules: 'Les formules F3 à F6 correspondent à 1,50 USD par personne par famille et par mois.',
     modalites: [
-      'Adhésion sur MAASH : en ligne sur le site, auprès d’un agent de terrain ou via l’application Prosoc.',
+      'Adhésion à MAASH : en ligne sur le site, auprès d’un agent de terrain ou via l’application Prosoc.',
       'Tout agent MAASH peut effectuer une adhésion ; le superviseur affecte ensuite le membre à un agent de terrain.',
       'Paiement via Prosoc, par Mobile Money (tous les opérateurs en RDC) et par carte Visa.',
     ],
@@ -197,6 +197,7 @@ export default {
     voir: 'Voir la liste des hôpitaux',
     fermer: 'Fermer',
     repere: 'Repère',
+    tarif: 'Tarif',
     itineraire: 'Itinéraire',
     aVenir: 'D’autres établissements seront ajoutés prochainement.',
     liste: [
@@ -217,6 +218,33 @@ export default {
         commune: 'Masina',
       },
     ],
+    vip: {
+      titre: 'Hôpitaux privés partenaires — soins de santé VIP',
+      liste: [
+        { nom: 'Monkole', tarif: '70 $, 80 $, 95 $ ; 190 $ — formule globale', repere: 'Mont-Ngafula : avenue Ngafani n° 4808' },
+        { nom: 'Mongala', tarif: '135 $ ; 190 $ — formule globale', repere: 'Gombe : avenue de la Mongala, réf. CCTV / Canal Kin' },
+        { nom: 'Ngaliema Center', tarif: '145 $', repere: 'Kintambo, réf. magasin' },
+        { nom: 'Clinique Ngaliema', tarif: '175 $', repere: 'Ngaliema' },
+        { nom: 'D.H.K — De Smet Hospital of Kinsuka', tarif: '145 $', repere: 'Ngaliema : avenue de l’École n° 2, quartier Brikin ; Gombe : boulevard du 30 Juin n° 374, Galerie St Pierre' },
+        { nom: 'Centre de Santé de Référence de Kimbondo', tarif: '20 $', repere: 'Bandalungwa : avenue Chef Kinzonzi n° 283, quartier Lingwala, entrée Maman Colonel / Kimbondo' },
+        { nom: 'Centre Hospitalier Shekina', tarif: '20 $, 30 $, 40 $, 70 $', repere: 'Barumbu : avenue Cadastre n° 4014, quartier Ndolo, réf. Beau marché' },
+        { nom: 'Promedis', tarif: '40 $, 70 $', repere: 'Limete, Matete, Ngaliema, Mont-Ngafula et N’Sele/Kinkole — plusieurs adresses' },
+        { nom: 'Saint Vincent de Paul', tarif: '30 $', repere: 'N’Sele : avenue Ilaka n° 7, quartier Bibwa' },
+        { nom: 'HJ Hospitals', repere: 'Adresse à confirmer' },
+        { nom: 'Saint Joseph', tarif: '65 $ célibataire ; 70 $ famille', repere: 'Limete : 15e rue, quartier Résidentiel' },
+        { nom: 'Centre Hospitalier Nganda', repere: 'Kintambo : avenue Haute Tension n° 3816' },
+        { nom: 'Centre Hospitalier Roi Baudouin Ier', tarif: '20 $', repere: 'Masina : avenue Bolenge n° 28, quartier Boba, derrière l’hôpital Mutombo Dikembe' },
+        { nom: 'Clinique Diamant', repere: 'Gombe : boulevard du 30 Juin n° 3642' },
+        { nom: 'Clinique IK (CIK)', tarif: '70 $, 145 $', repere: 'Ngaliema : avenue Kwango n° 3, quartier Joli-Parc, réf. Kintambo magasin' },
+        { nom: 'Open Clinic', tarif: '40 $, 70 $', repere: 'Gombe : croisement des avenues Oranger et 24 Novembre, en face de l’UBA' },
+        { nom: 'Centre Hospitalier Médecin de Nuit', repere: 'Gombe : avenue Province n° 4744' },
+        { nom: 'Centre Hospitalier Boyambi — Armée du Salut', repere: 'Barumbu : avenue Kasaï n° 12, croisement avenue Rwakadingi, réf. Université William Booth' },
+        { nom: 'Clinique Oasis de Vie', tarif: '30 $ ; 45 $, 70 $, 125 $', repere: 'Barumbu : avenue Kabambare n° 6050, quartier Bon Marché' },
+        { nom: 'Centre Hospitalier Bolingani', tarif: '30 $ ; 40 $', repere: 'Ngaliema : avenue Songe n° 1, quartier Musey Binza Ozone' },
+        { nom: 'Polyclinique de Kinshasa', repere: 'Gombe : avenue Flamboyant n° 34' },
+        { nom: 'IK Medical Center', tarif: '30 $', repere: 'Ngaliema : avenue Done Béatrice n° 22, réf. arrêt Maternité / école Nduenge' },
+      ],
+    },
   },
 
   recrutement: {
@@ -256,6 +284,10 @@ export default {
         description:
           'PROSOC : programme de couverture sociale de MAASH, application Prosoc, rôles utilisateurs, Mobile Money et protection des données.',
       },
+      activites: {
+        title: 'Activités — MAASH',
+        description: 'Découvrez les activités de MAASH : consultation, accompagnement, échanges communautaires et soutien socio-humanitaire.',
+      },
       adhesion: {
         title: 'Adhésion et tarifs — MAASH',
         description:
@@ -284,6 +316,7 @@ export default {
       services: 'Services',
       prosoc: 'PROSOC',
       adhesion: 'Adhésion',
+      activites: 'Activités',
       contact: 'Contact',
       join: 'Adhérer',
       login: 'Connexion',
@@ -308,7 +341,7 @@ export default {
     },
 
     common: {
-      joinMaash: 'Adhérer sur MAASH',
+      joinMaash: 'Adhérer à MAASH',
       contactUs: 'Nous contacter',
       discoverServices: 'Découvrir nos services',
       downloadApp: 'Télécharger l’application Prosoc',
@@ -328,7 +361,7 @@ export default {
         { valeur: '4', label: 'branches de prestations' },
         { valeur: '4', label: 'districts couverts à Kinshasa' },
         { valeur: '24', label: 'communes visées à Kinshasa' },
-        { valeur: '1.5 USD', label: 'cotisation mensuelle par personnes par familles' },
+        { valeur: '1,50 USD', label: 'cotisation mensuelle par personne par famille par mois' },
       ],
       whoBadge: 'Qui sommes-nous',
       whoTitle: 'Une mutuelle de protection sociale pour tous',
@@ -347,7 +380,7 @@ export default {
       discoverProgram: 'Découvrir le programme',
       memberBadge: 'Devenir membre',
       memberTitle: 'Rejoignez MAASH dès aujourd’hui',
-      memberSubtitle: 'Adhésion à {fee} Formules des cotiations à partir de {fee} par personnes par familles.',
+      memberSubtitle: 'Adhésion à {fee}. Formules de cotisation à partir de 1,50 USD par mois et par personne, selon la composition de la famille.',
       viewPrices: 'Voir les tarifs',
     },
 
@@ -392,9 +425,20 @@ export default {
       rolesTitle: 'Catégories d’utilisateurs',
       dataTitle: 'Protection des données',
       groupsTitle: 'Publics concernés',
-      ctaTitle: 'Adhérez sur MAASH dès maintenant',
+      ctaTitle: 'Adhérez à MAASH dès maintenant',
       ctaText:
         'Adhésion, paiement des cotisations et suivi de votre dossier en ligne, en toute simplicité.',
+    },
+
+    activites: {
+      h1: 'Activités de MAASH',
+      hero: 'Découvrez les actions et les initiatives menées par MAASH au service des membres et des communautés.',
+      badge: 'Notre action sur le terrain',
+      title: 'Les activités de MAASH',
+      subtitle: 'Une présence de proximité pour écouter, accompagner et améliorer la couverture des familles.',
+      futureBadge: 'À venir',
+      futureTitle: 'Partagez les activités de MAASH',
+      futureText: 'Cette galerie sera enrichie avec les photos et les comptes rendus des prochaines activités de MAASH.',
     },
 
     adhesion: {
@@ -421,7 +465,7 @@ export default {
       howBadge: 'Modalités',
       howTitle: 'Comment adhérer',
       ctaTitle: 'Prêt à adhérer ?',
-      ctaText: 'Adhérez sur MAASH en ligne ou contactez le secrétariat — {phone} (WhatsApp).',
+      ctaText: 'Adhérez à MAASH en ligne ou contactez le secrétariat — {phone} (WhatsApp).',
     },
 
     contact: {

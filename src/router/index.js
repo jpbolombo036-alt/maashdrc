@@ -68,6 +68,16 @@ const routes = [
     },
   },
   {
+    path: '/activites',
+    name: 'activites',
+    component: () => import('../views/ActivitesView.vue'),
+    meta: {
+      title: 'Activités',
+      description:
+        'Découvrez les activités de MAASH : consultation, accompagnement, échanges communautaires et soutien socio-humanitaire.',
+    },
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue'),

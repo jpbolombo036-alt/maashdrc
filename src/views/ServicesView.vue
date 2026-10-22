@@ -7,15 +7,20 @@ import { useContent } from '../i18n/useContent'
 const { t } = useI18n()
 const { branches, hopitaux } = useContent()
 
-// Modale « Catégorie standard » : liste des hôpitaux de l'État (clic sur la prestation H)
-const hopitauxOpen = ref(false)
+// Modales des établissements de santé : catégorie standard (H) et VIP (I)
+const selectedHospitals = ref(null)
+const selectedHospitalsTitle = ref('')
 
 function isHospitalsCard(b, p) {
-  return b.id === 'sante' && p.code === 'H'
+  return b.id === 'sante' && ['H', 'I'].includes(p.code)
 }
 
 function openHospitals(b, p) {
-  if (isHospitalsCard(b, p)) hopitauxOpen.value = true
+  if (!isHospitalsCard(b, p)) return
+
+  const isVip = p.code === 'I'
+  selectedHospitals.value = isVip ? hopitaux.value.vip.liste : hopitaux.value.liste
+  selectedHospitalsTitle.value = isVip ? hopitaux.value.vip.titre : hopitaux.value.titre
 }
 
 function mapUrl(h) {
@@ -26,7 +31,7 @@ function mapUrl(h) {
 }
 
 function onKeydown(e) {
-  if (e.key === 'Escape') hopitauxOpen.value = false
+  if (e.key === 'Escape') selectedHospitals.value = null
 }
 
 onMounted(() => window.addEventListener('keydown', onKeydown))
@@ -85,35 +90,38 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
       </div>
     </section>
 
-    <!-- Liste des hôpitaux (catégorie standard) : ouverte par la prestation H -->
+    <!-- Liste des établissements : ouverte par les prestations H ou I -->
     <Teleport to="body">
       <div
-        v-if="hopitauxOpen"
+        v-if="selectedHospitals"
         class="hosp-overlay"
         role="dialog"
         aria-modal="true"
-        :aria-label="t('hopitaux.titre')"
-        @click.self="hopitauxOpen = false"
+        :aria-label="selectedHospitalsTitle"
+        @click.self="selectedHospitals = null"
       >
         <div class="hosp-panel">
           <div class="hosp-head">
-            <h3>{{ t('hopitaux.titre') }}</h3>
+            <h3>{{ selectedHospitalsTitle }}</h3>
             <button
               type="button"
               class="hosp-close"
               :aria-label="t('hopitaux.fermer')"
-              @click="hopitauxOpen = false"
+              @click="selectedHospitals = null"
             >
               ✕
             </button>
           </div>
 
           <ul class="hosp-list">
-            <li v-for="h in hopitaux.liste" :key="h.nom" class="hosp-item">
+            <li v-for="h in selectedHospitals" :key="h.nom" class="hosp-item">
               <div class="hosp-name">
                 <AppIcon name="pin" class="hosp-pin" />
                 <strong>{{ h.nom }}</strong>
               </div>
+              <p v-if="h.tarif" class="hosp-rep">
+                <span>{{ t('hopitaux.tarif') }} :</span> {{ h.tarif }}
+              </p>
               <p v-if="h.repere" class="hosp-rep">
                 <span>{{ t('hopitaux.repere') }} :</span> {{ h.repere }}
               </p>

@@ -27,6 +27,7 @@ const annee = new Date().getFullYear()
           <li><router-link to="/services">{{ t('ui.nav.services') }}</router-link></li>
           <li><router-link to="/prosoc">{{ t('ui.prosoc.h1') }}</router-link></li>
           <li><router-link to="/adhesion">{{ t('ui.adhesion.h1') }}</router-link></li>
+          <li><router-link to="/activites">{{ t('ui.nav.activites') }}</router-link></li>
           <li><router-link to="/recrutement">{{ t('ui.nav.recrutement') }}</router-link></li>
           <li>
             <a :href="maash.apkUrl" download>{{ t('ui.common.downloadApp') }} (APK)</a>

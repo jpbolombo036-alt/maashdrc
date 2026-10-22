@@ -16,8 +16,8 @@ export default {
     prosocAdhesionUrl: 'https://prosoc.maashrdc.com/adhesions/create',
     prosocLoginUrl: 'https://prosoc.maashrdc.com/login',
     apkUrl: '/apk/prod-prosoc-20.10.apk',
-    email: 'contact@maashprosoc.cd',
-    emailSecretariat: 'secretariat@maashprosoc.cd',
+    email: 'secretariatmaash@gmail.com',
+    emailSecretariat: 'secretariatmaash@gmail.com',
     telephone: '+243 973 798 811',
     telephoneHref: 'tel:+243973798811',
     whatsappHref: 'https://wa.me/243973798811',
@@ -115,7 +115,7 @@ export default {
       icon: 'heart',
       resume: 'Tres tipos de atención, hasta seis personas por familia. Tarifas mensuales por familia, además de las cuotas. Acceso desde el mes siguiente al pago.',
       prestations: [
-        { code: 'H', nom: 'Categoría estándar', detail: 'Hospitales de referencia. 19 USD / mes / familia (hasta 6 personas).' },
+        { code: 'H', nom: 'Categoría estándar', detail: 'Hospitales de referencia. 20 USD / mes / familia (hasta 6 personas).' },
         { code: 'I', nom: 'Atención sanitaria VIP', detail: 'Centros hospitalarios privados de alta calidad. Tarifas: por completar.' },
         { code: 'J', nom: 'Atención sanitaria comunitaria', detail: 'Centros de salud locales. Desde 10 USD / mes / familia (hasta 6 personas).' },
       ],
@@ -196,6 +196,7 @@ export default {
     voir: 'Ver la lista de hospitales',
     fermer: 'Cerrar',
     repere: 'Punto de referencia',
+    tarif: 'Tarifa',
     itineraire: 'Cómo llegar',
     aVenir: 'Se añadirán más establecimientos próximamente.',
     liste: [
@@ -216,6 +217,33 @@ export default {
         commune: 'Masina',
       },
     ],
+    vip: {
+      titre: 'Hospitales privados asociados — atención sanitaria VIP',
+      liste: [
+        { nom: 'Monkole', tarif: '70 $, 80 $, 95 $; 190 $ — fórmula global', repere: 'Mont-Ngafula: avenida Ngafani n.º 4808' },
+        { nom: 'Mongala', tarif: '135 $; 190 $ — fórmula global', repere: 'Gombe: avenida de la Mongala, referencia CCTV / Canal Kin' },
+        { nom: 'Ngaliema Center', tarif: '145 $', repere: 'Kintambo, cerca de la tienda' },
+        { nom: 'Clinique Ngaliema', tarif: '175 $', repere: 'Ngaliema' },
+        { nom: 'D.H.K — De Smet Hospital of Kinsuka', tarif: '145 $', repere: 'Ngaliema: avenida de l’École n.º 2; Gombe: boulevard del 30 de Junio n.º 374' },
+        { nom: 'Centre de Santé de Référence de Kimbondo', tarif: '20 $', repere: 'Bandalungwa: avenida Chef Kinzonzi n.º 283' },
+        { nom: 'Centre Hospitalier Shekina', tarif: '20 $, 30 $, 40 $, 70 $', repere: 'Barumbu: avenida Cadastre n.º 4014, Ndolo' },
+        { nom: 'Promedis', tarif: '40 $, 70 $', repere: 'Limete, Matete, Ngaliema, Mont-Ngafula y N’Sele/Kinkole' },
+        { nom: 'Saint Vincent de Paul', tarif: '30 $', repere: 'N’Sele: avenida Ilaka n.º 7, Bibwa' },
+        { nom: 'HJ Hospitals', repere: 'Dirección por confirmar' },
+        { nom: 'Saint Joseph', tarif: '65 $ individual; 70 $ familia', repere: 'Limete: 15.ª calle, barrio Residencial' },
+        { nom: 'Centre Hospitalier Nganda', repere: 'Kintambo: avenida Haute Tension n.º 3816' },
+        { nom: 'Centre Hospitalier Roi Baudouin Ier', tarif: '20 $', repere: 'Masina: avenida Bolenge n.º 28' },
+        { nom: 'Clinique Diamant', repere: 'Gombe: boulevard del 30 de Junio n.º 3642' },
+        { nom: 'Clinique IK (CIK)', tarif: '70 $, 145 $', repere: 'Ngaliema: avenida Kwango n.º 3, Joli-Parc' },
+        { nom: 'Open Clinic', tarif: '40 $, 70 $', repere: 'Gombe: cruce de las avenidas Oranger y 24 Novembre, frente a UBA' },
+        { nom: 'Centre Hospitalier Médecin de Nuit', repere: 'Gombe: avenida Province n.º 4744' },
+        { nom: 'Centre Hospitalier Boyambi — Ejército de Salvación', repere: 'Barumbu: avenida Kasaï n.º 12' },
+        { nom: 'Clinique Oasis de Vie', tarif: '30 $; 45 $, 70 $, 125 $', repere: 'Barumbu: avenida Kabambare n.º 6050' },
+        { nom: 'Centre Hospitalier Bolingani', tarif: '30 $; 40 $', repere: 'Ngaliema: avenida Songe n.º 1, Musey Binza Ozone' },
+        { nom: 'Polyclinique de Kinshasa', repere: 'Gombe: avenida Flamboyant n.º 34' },
+        { nom: 'IK Medical Center', tarif: '30 $', repere: 'Ngaliema: avenida Done Béatrice n.º 22' },
+      ],
+    },
   },
 
   recrutement: {
@@ -255,6 +283,10 @@ export default {
         description:
           'PROSOC: programa de cobertura social de MAASH, aplicación Prosoc, roles de usuario, Mobile Money y protección de datos.',
       },
+      activites: {
+        title: 'Actividades — MAASH',
+        description: 'Descubre las actividades de MAASH: consulta, acompañamiento, intercambios comunitarios y apoyo socio-humanitario.',
+      },
       adhesion: {
         title: 'Adhesión y tarifas — MAASH',
         description:
@@ -283,6 +315,7 @@ export default {
       services: 'Servicios',
       prosoc: 'PROSOC',
       adhesion: 'Adhesión',
+      activites: 'Actividades',
       contact: 'Contacto',
       join: 'Afiliarse',
       login: 'Iniciar sesión',
@@ -394,6 +427,17 @@ export default {
       ctaTitle: 'Afíliate a MAASH ahora mismo',
       ctaText:
         'Adhesión, pago de cuotas y seguimiento de su expediente en línea, con toda sencillez.',
+    },
+
+    activites: {
+      h1: 'Actividades de MAASH',
+      hero: 'Descubre las acciones e iniciativas de MAASH al servicio de sus miembros y comunidades.',
+      badge: 'Nuestra acción en el terreno',
+      title: 'Las actividades de MAASH',
+      subtitle: 'Una presencia cercana para escuchar, acompañar y mejorar la cobertura de las familias.',
+      futureBadge: 'Próximamente',
+      futureTitle: 'Comparte las actividades de MAASH',
+      futureText: 'Esta galería se ampliará con fotos y reportes de las próximas actividades de MAASH.',
     },
 
     adhesion: {

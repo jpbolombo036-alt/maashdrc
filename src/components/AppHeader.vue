@@ -17,6 +17,7 @@ const links = [
   { to: '/services', key: 'services' },
   { to: '/prosoc', key: 'prosoc' },
   { to: '/adhesion', key: 'adhesion' },
+  { to: '/activites', key: 'activites' },
   { to: '/contact', key: 'contact' },
 ]
 
