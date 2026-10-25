@@ -43,7 +43,7 @@ const { cibles, maash } = useContent()
 
         <div class="note" style="margin-top: 1.5rem">
           {{ t('ui.adhesion.noteHealth1') }}
-          <strong>19 USD/mois</strong> {{ t('ui.adhesion.noteHealth2') }}
+          <strong>20 USD/mois</strong> {{ t('ui.adhesion.noteHealth2') }}
           <strong>{{ t('ui.adhesion.noteHealth3') }} 10 USD/mois</strong>
           {{ t('ui.adhesion.noteHealth4') }}
         </div>
