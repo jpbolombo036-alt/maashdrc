@@ -1,0 +1,49 @@
+# ============================================================
+# MAASH — .htaccess pour Apache (version simplifiée)
+# ============================================================
+Options -Indexes +FollowSymLinks
+RewriteEngine On
+
+# CORS headers
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "*"
+
+# Compression gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/css text/xml text/javascript application/json application/javascript application/xml application/xml+rss image/svg+xml
+</IfModule>
+
+# Neutralise les expirations héritées : les fichiers à nom stable sont revalidés.
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+# HTML, images, APK, robots et sitemap : stockage possible, revalidation obligatoire.
+# mod_headers est requis (également utilisé par les en-têtes CORS ci-dessus).
+Header set Cache-Control "no-cache"
+Header unset Expires
+
+# Seuls les bundles Vite avec empreinte dans le nom sont immuables.
+# Exemple : index-DiwrgTda.js. Ne pas appliquer cette règle aux APK à nom stable.
+<FilesMatch "^.+-[A-Za-z0-9_-]{8,}\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Serveur APK correct
+<FilesMatch "\.apk$">
+    Header set Content-Type "application/vnd.android.package-archive"
+</FilesMatch>
+
+# Rewrite rules pour Vue Router (SPA)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Erreurs personnalisées
+ErrorDocument 404 /index.html
+# Une directive par code ; conserver les vrais messages d'erreur du serveur.
+ErrorDocument 500 default
+ErrorDocument 502 default
+ErrorDocument 503 default
+ErrorDocument 504 default

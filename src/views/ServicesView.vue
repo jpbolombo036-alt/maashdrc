@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, nextTick, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
 import { useContent } from '../i18n/useContent'
@@ -8,19 +8,65 @@ const { t } = useI18n()
 const { branches, hopitaux } = useContent()
 
 // Modales des établissements de santé : catégorie standard (H) et VIP (I)
-const selectedHospitals = ref(null)
-const selectedHospitalsTitle = ref('')
+const selectedCategory = ref(null)
+const hospitalDialog = ref(null)
+const closeButton = ref(null)
+const selectedContent = computed(() =>
+  selectedCategory.value === 'I' ? hopitaux.value.vip : hopitaux.value,
+)
+const selectedHospitals = computed(() => selectedContent.value.liste)
+const selectedHospitalsTitle = computed(() => selectedContent.value.titre)
+let trigger = null
+let previousOverflow = null
+
+function restoreScroll() {
+  if (previousOverflow !== null) {
+    document.body.style.overflow = previousOverflow
+    previousOverflow = null
+  }
+}
+
+function onHospitalsClosed() {
+  selectedCategory.value = null
+  restoreScroll()
+  if (trigger?.isConnected) trigger.focus({ preventScroll: true })
+  trigger = null
+}
+
+function closeHospitals() {
+  hospitalDialog.value?.close()
+}
+
+function onDialogKeydown(event) {
+  if (event.key !== 'Tab') return
+  const controls = hospitalDialog.value.querySelectorAll('button:not(:disabled), a[href]')
+  const first = controls[0]
+  const last = controls[controls.length - 1]
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first.focus()
+  }
+}
 
 function isHospitalsCard(b, p) {
   return b.id === 'sante' && ['H', 'I'].includes(p.code)
 }
 
-function openHospitals(b, p) {
-  if (!isHospitalsCard(b, p)) return
+async function openHospitals(b, p, event) {
+  if (!isHospitalsCard(b, p) || selectedCategory.value !== null) return
 
-  const isVip = p.code === 'I'
-  selectedHospitals.value = isVip ? hopitaux.value.vip.liste : hopitaux.value.liste
-  selectedHospitalsTitle.value = isVip ? hopitaux.value.vip.titre : hopitaux.value.titre
+  trigger = event.currentTarget
+  selectedCategory.value = p.code
+  await nextTick()
+  // La vue peut avoir été démontée pendant la mise à jour du DOM.
+  if (!hospitalDialog.value) return
+  hospitalDialog.value.showModal()
+  previousOverflow = document.body.style.overflow
+  document.body.style.overflow = 'hidden'
+  closeButton.value.focus()
 }
 
 function mapUrl(h) {
@@ -30,12 +76,10 @@ function mapUrl(h) {
   )
 }
 
-function onKeydown(e) {
-  if (e.key === 'Escape') selectedHospitals.value = null
-}
-
-onMounted(() => window.addEventListener('keydown', onKeydown))
-onUnmounted(() => window.removeEventListener('keydown', onKeydown))
+onUnmounted(() => {
+  restoreScroll()
+  trigger = null
+})
 </script>
 
 <template>
@@ -60,16 +104,18 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
         <div class="grid" :class="b.prestations.length > 2 ? 'grid-3' : 'grid-2'">
           <div
-            v-for="p in b.prestations"
-            :key="p.nom"
+            v-for="(p, prestationIndex) in b.prestations"
+            :key="`${b.id}-${p.code}-${prestationIndex}`"
             class="card presta-card"
             :class="{ 'is-clickable': isHospitalsCard(b, p) }"
             :role="isHospitalsCard(b, p) ? 'button' : undefined"
             :tabindex="isHospitalsCard(b, p) ? 0 : undefined"
             :aria-label="isHospitalsCard(b, p) ? t('hopitaux.voir') : undefined"
-            @click="openHospitals(b, p)"
-            @keydown.enter.prevent="openHospitals(b, p)"
-            @keydown.space.prevent="openHospitals(b, p)"
+            :aria-haspopup="isHospitalsCard(b, p) ? 'dialog' : undefined"
+            :aria-controls="isHospitalsCard(b, p) ? 'hospital-dialog' : undefined"
+            @click="openHospitals(b, p, $event)"
+            @keydown.enter.prevent="openHospitals(b, p, $event)"
+            @keydown.space.prevent="openHospitals(b, p, $event)"
           >
             <span class="presta-code">{{ p.code }}</span>
             <h3>{{ p.nom }}</h3>
@@ -92,22 +138,25 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
     <!-- Liste des établissements : ouverte par les prestations H ou I -->
     <Teleport to="body">
-      <div
-        v-if="selectedHospitals"
+      <dialog
+        id="hospital-dialog"
+        ref="hospitalDialog"
         class="hosp-overlay"
-        role="dialog"
-        aria-modal="true"
-        :aria-label="selectedHospitalsTitle"
-        @click.self="selectedHospitals = null"
+        aria-labelledby="hospital-dialog-title"
+        @click.self="closeHospitals"
+        @cancel.prevent="closeHospitals"
+        @close="onHospitalsClosed"
+        @keydown="onDialogKeydown"
       >
         <div class="hosp-panel">
           <div class="hosp-head">
-            <h3>{{ selectedHospitalsTitle }}</h3>
+            <h3 id="hospital-dialog-title">{{ selectedHospitalsTitle }}</h3>
             <button
+              ref="closeButton"
               type="button"
               class="hosp-close"
               :aria-label="t('hopitaux.fermer')"
-              @click="selectedHospitals = null"
+              @click="closeHospitals"
             >
               ✕
             </button>
@@ -134,7 +183,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
           <p class="hosp-note">{{ t('hopitaux.aVenir') }}</p>
         </div>
-      </div>
+      </dialog>
     </Teleport>
   </div>
 </template>
@@ -207,11 +256,26 @@ html[data-theme='dark'] .presta-hint {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(6, 78, 59, 0.55);
-  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
+}
+
+.hosp-overlay[open] {
+  display: flex;
+}
+
+.hosp-overlay::backdrop {
+  background: rgba(6, 78, 59, 0.55);
 }
 
 .hosp-panel {

@@ -146,15 +146,17 @@ export function applySeo(to) {
   setMeta('meta[name="twitter:title"]', title)
   setMeta('meta[name="twitter:description"]', description)
 
-  // La page 404 ne doit pas être indexée par Google
+  // Réévaluer robots à chaque navigation, y compris au retour depuis une 404.
+  let robots = document.querySelector('meta[name="robots"]')
   if (to.name === 'introuvable') {
-    let robots = document.querySelector('meta[name="robots"]')
     if (!robots) {
       robots = document.createElement('meta')
       robots.setAttribute('name', 'robots')
       document.head.appendChild(robots)
     }
     robots.setAttribute('content', 'noindex, follow')
+  } else if (robots) {
+    robots.remove()
   }
 }
 

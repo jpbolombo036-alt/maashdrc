@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test tests/reliability.test.js",
+    "test:browser": "node --test tests/accessibility.browser.test.js"
   },
   "dependencies": {
     "vue": "^3.5.13",

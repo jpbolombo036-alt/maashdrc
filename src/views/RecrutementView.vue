@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, nextTick, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../components/AppIcon.vue'
 import { useContent } from '../i18n/useContent'
@@ -25,12 +25,35 @@ const form = reactive({
 const honeypot = ref('')
 const status = ref('idle') // idle | sending | success | error
 const errorMsg = ref('')
-const mountedAt = Date.now()
+const applicationSection = ref(null)
+const nameInput = ref(null)
+const fieldLimits = {
+  nom: 120,
+  tel: 32,
+  email: 254,
+  diplome: 200,
+  experience: 500,
+  disponibilite: 200,
+  message: 3000,
+}
+let activeController = null
+let unmounted = false
+
+onUnmounted(() => {
+  unmounted = true
+  activeController?.abort()
+})
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validate() {
   if (!form.nom || !form.tel || !form.email || !form.poste) {
+    return t('ui.recrutement.errRequired')
+  }
+  if (Object.entries(fieldLimits).some(([key, limit]) => form[key].length > limit)) {
+    return t('ui.recrutement.errLength')
+  }
+  if (!recrutement.value.postes.some((poste) => poste.code === form.poste)) {
     return t('ui.recrutement.errRequired')
   }
   if (!emailRe.test(form.email)) return t('ui.recrutement.errEmail')
@@ -51,7 +74,20 @@ function resetForm() {
   form.consent = false
 }
 
+async function choosePost(code) {
+  if (unmounted || status.value === 'sending') return
+  if (!recrutement.value.postes.some((poste) => poste.code === code)) return
+  form.poste = code
+  status.value = 'idle'
+  errorMsg.value = ''
+  await nextTick()
+  if (unmounted) return
+  nameInput.value?.focus({ preventScroll: true })
+  applicationSection.value?.scrollIntoView({ block: 'start', behavior: 'instant' })
+}
+
 async function submit() {
+  if (status.value === 'sending' || status.value === 'success' || unmounted) return
   errorMsg.value = ''
   const err = validate()
   if (err) {
@@ -59,9 +95,11 @@ async function submit() {
     errorMsg.value = err
     return
   }
-  // Piège temporel : un humain met au moins 3 s à remplir le formulaire
-  if (honeypot.value || Date.now() - mountedAt < 3000) {
-    status.value = 'success' // succès simulé pour piéger les bots
+  // Ne jamais annoncer un succès sans confirmation du service d'envoi.
+  // L'autoremplissage peut légitimement permettre une soumission très rapide.
+  if (honeypot.value) {
+    status.value = 'error'
+    errorMsg.value = t('ui.recrutement.errSend')
     return
   }
   if (!ACCESS_KEY) {
@@ -71,9 +109,10 @@ async function submit() {
   }
 
   status.value = 'sending'
+  const poste = recrutement.value.postes.find((item) => item.code === form.poste)
   const fd = new FormData()
   fd.append('access_key', ACCESS_KEY)
-  fd.append('subject', `Candidature MAASH — ${form.poste} — ${form.nom}`)
+  fd.append('subject', `Candidature MAASH — ${poste.code} — ${form.nom}`)
   fd.append('from_name', 'Site MAASH — Recrutement')
   fd.append('replyTo', form.email)
   fd.append('botcheck', honeypot.value)
@@ -81,32 +120,46 @@ async function submit() {
   fd.append('telephone', form.tel)
   fd.append('email', form.email)
   fd.append('poste', form.poste)
+  fd.append('poste_libelle', poste.nom)
   fd.append('diplome', form.diplome)
   fd.append('experience', form.experience)
   fd.append('disponibilite', form.disponibilite)
   fd.append('message', form.message)
   fd.append('langue', locale.value)
+  fd.append('consentement', 'true')
+  fd.append('consentement_texte', t('ui.recrutement.consentLabel'))
 
+  const controller = new AbortController()
+  activeController = controller
+  const timeout = setTimeout(() => controller.abort(), 20000)
   try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: fd,
+      signal: controller.signal,
+    })
     let data = null
     try {
       data = await res.json()
     } catch (parseErr) {
+      if (controller.signal.aborted) throw parseErr
       data = null
     }
-    if (!res.ok || !data || !data.success) {
-      const detail = (data && data.message) || `HTTP ${res.status}`
-      console.error('Web3Forms —', res.status, detail)
-      throw new Error(detail)
+    if (unmounted) return
+    if (!res.ok || !data || data.success !== true) {
+      throw new Error(`HTTP ${res.status}`)
     }
     status.value = 'success'
     resetForm()
   } catch (e) {
+    if (unmounted) return
     status.value = 'error'
-    // On affiche le message réel renvoyé par l'API pour faciliter le diagnostic
-    errorMsg.value =
-      t('ui.recrutement.errSend') + (e && e.message ? ` — ${e.message}` : '')
+    errorMsg.value = t(
+      e.name === 'AbortError' ? 'ui.recrutement.errTimeout' : 'ui.recrutement.errSend',
+    )
+  } finally {
+    clearTimeout(timeout)
+    activeController = null
   }
 }
 </script>
@@ -126,15 +179,26 @@ async function submit() {
         <h2 class="section-title">{{ t('ui.recrutement.postesTitle') }}</h2>
         <p class="section-subtitle">{{ t('ui.recrutement.postesText') }}</p>
         <div class="grid grid-3">
-          <div v-for="p in recrutement.postes" :key="p.code" class="card poste-card">
-            <div class="icon"><AppIcon name="users" /></div>
-            <h3>{{ p.nom }}</h3>
-          </div>
+          <button
+            v-for="p in recrutement.postes"
+            :key="p.code"
+            type="button"
+            class="card poste-card"
+            :class="{ 'is-selected': form.poste === p.code }"
+            :aria-pressed="form.poste === p.code"
+            aria-controls="application-section"
+            :disabled="status === 'sending'"
+            @click="choosePost(p.code)"
+          >
+            <span class="icon"><AppIcon name="users" /></span>
+            <span class="poste-title">{{ p.nom }}</span>
+            <span class="poste-arrow" aria-hidden="true">→</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section id="application-section" ref="applicationSection" class="section section-alt application-section">
       <div class="container">
         <div class="card form-card">
           <span class="badge">{{ t('ui.recrutement.formBadge') }}</span>
@@ -158,11 +222,11 @@ async function submit() {
             </div>
           </div>
 
-          <form v-else novalidate @submit.prevent="submit">
+          <form v-else novalidate :aria-busy="status === 'sending'" @submit.prevent="submit">
             <div class="form-grid">
               <label class="field">
                 <span>{{ t('ui.recrutement.nom') }} *</span>
-                <input v-model.trim="form.nom" type="text" name="nom" autocomplete="name" required />
+                <input ref="nameInput" v-model.trim="form.nom" type="text" name="nom" autocomplete="name" :maxlength="fieldLimits.nom" required />
               </label>
               <label class="field">
                 <span>{{ t('ui.recrutement.tel') }} *</span>
@@ -171,6 +235,7 @@ async function submit() {
                   type="tel"
                   name="telephone"
                   autocomplete="tel"
+                  :maxlength="fieldLimits.tel"
                   required
                 />
               </label>
@@ -181,6 +246,7 @@ async function submit() {
                   type="email"
                   name="email"
                   autocomplete="email"
+                  :maxlength="fieldLimits.email"
                   required
                 />
               </label>
@@ -188,14 +254,14 @@ async function submit() {
                 <span>{{ t('ui.recrutement.poste') }} *</span>
                 <select v-model="form.poste" name="poste" required>
                   <option value="" disabled>—</option>
-                  <option v-for="p in recrutement.postes" :key="p.code" :value="p.nom">
+                  <option v-for="p in recrutement.postes" :key="p.code" :value="p.code">
                     {{ p.nom }}
                   </option>
                 </select>
               </label>
               <label class="field">
                 <span>{{ t('ui.recrutement.diplome') }}</span>
-                <input v-model.trim="form.diplome" type="text" name="diplome" />
+                <input v-model.trim="form.diplome" type="text" name="diplome" :maxlength="fieldLimits.diplome" />
               </label>
               <label class="field">
                 <span>{{ t('ui.recrutement.experience') }}</span>
@@ -203,16 +269,17 @@ async function submit() {
                   v-model.trim="form.experience"
                   type="text"
                   name="experience"
+                  :maxlength="fieldLimits.experience"
                   :placeholder="t('ui.recrutement.expPlaceholder')"
                 />
               </label>
               <label class="field field-full">
                 <span>{{ t('ui.recrutement.disponibilite') }}</span>
-                <input v-model.trim="form.disponibilite" type="text" name="disponibilite" />
+                <input v-model.trim="form.disponibilite" type="text" name="disponibilite" :maxlength="fieldLimits.disponibilite" />
               </label>
               <label class="field field-full">
                 <span>{{ t('ui.recrutement.message') }}</span>
-                <textarea v-model="form.message" name="message" rows="4"></textarea>
+                <textarea v-model="form.message" name="message" rows="4" :maxlength="fieldLimits.message"></textarea>
               </label>
             </div>
 
@@ -262,6 +329,45 @@ async function submit() {
 <style scoped>
 .poste-card {
   text-align: center;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.poste-card:hover:not(:disabled),
+.poste-card.is-selected {
+  border-color: var(--green-600);
+  box-shadow: var(--shadow-md);
+}
+
+.poste-card:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 3px;
+}
+
+.poste-card:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.poste-title {
+  display: block;
+  color: var(--green-900);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.poste-arrow {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--green-700);
+}
+
+.application-section {
+  scroll-margin-top: 100px;
 }
 
 .poste-card .icon {

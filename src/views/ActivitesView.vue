@@ -6,33 +6,27 @@ const { t } = useI18n()
 const activities = [
   {
     image: '/consultation.jpg',
-    title: 'Consultation et orientation',
-    text: 'Écouter les besoins des membres et les orienter vers les solutions adaptées.',
+    id: 'consultation',
   },
   {
     image: '/distribution.jpg',
-    title: 'Distribution et accompagnement',
-    text: 'Mettre les prestations et l’accompagnement de MAASH à la portée des familles.',
+    id: 'distribution',
   },
   {
     image: '/echange.jpg',
-    title: 'Échanges avec les communautés',
-    text: 'Créer un dialogue de proximité avec les membres et les communautés.',
+    id: 'echange',
   },
   {
     image: '/soutien.jpg',
-    title: 'Soutien socio-humanitaire',
-    text: 'Contribuer à l’assistance des personnes et des familles selon leurs besoins.',
+    id: 'soutien',
   },
   {
     image: '/retraite.jpg',
-    title: 'Préparation de la retraite',
-    text: 'Sensibiliser les membres à la prévoyance et à la préparation de l’avenir.',
+    id: 'retraite',
   },
   {
     image: '/famille.jpg',
-    title: 'Protection de la famille',
-    text: 'Développer des solutions de couverture adaptées aux familles.',
+    id: 'famille',
   },
 ]
 </script>
@@ -54,10 +48,10 @@ const activities = [
 
         <div class="activity-grid">
           <article v-for="activity in activities" :key="activity.image" class="activity-card">
-            <img :src="activity.image" :alt="activity.title" class="activity-image" loading="lazy" />
+            <img :src="activity.image" :alt="t(`ui.activites.cards.${activity.id}.title`)" class="activity-image" loading="lazy" />
             <div class="activity-content">
-              <h3>{{ activity.title }}</h3>
-              <p>{{ activity.text }}</p>
+              <h3>{{ t(`ui.activites.cards.${activity.id}.title`) }}</h3>
+              <p>{{ t(`ui.activites.cards.${activity.id}.text`) }}</p>
             </div>
           </article>
         </div>

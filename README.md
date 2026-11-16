@@ -97,5 +97,36 @@ maash-site/
   Activation : créer un compte sur https://web3forms.com avec l'e-mail destinataire (ex.
   secretariatmaash@gmail.com), ajouter la clé d'accès dans `.env` (ignoré par git) :
   `VITE_WEB3FORMS_KEY=votre-cle-ici`, puis redémarrer `npm run dev` / redéployer. Sans clé ou
-  en cas d'erreur : message détaillé + renvoi WhatsApp. Entrées : footer (Navigation) + page
-  Contact (« Nous recrutons »). Anti-spam : honeypot + piège temporel (3 s).
+  en cas d'erreur : message traduit + renvoi WhatsApp. Entrées : footer (Navigation) + page
+  Contact (« Nous recrutons »). Anti-spam : honeypot, sans faux succès ni délai minimal
+  imposé aux candidats. Succès uniquement après confirmation de l'API ; délai maximal
+  de réponse : 20 secondes. En cas de dépassement, vérifier auprès de MAASH avant
+  de réessayer (une interruption ne garantit pas l'annulation côté destinataire).
+  Les postes sont transmis avec un code stable et leur libellé traduit ; le consentement
+  et son texte sont inclus. Les champs ont des limites de longueur côté interface.
+  Ces contrôles locaux ne remplacent pas les protections du service destinataire.
+
+## Tests de régression
+
+Sur la page Recrutement, cliquer sur une carte de poste amène au formulaire avec
+le poste présélectionné et le focus dans le champ Nom. Les autres saisies sont
+conservées ; les cartes sont désactivées pendant un envoi. Le même parcours est
+accessible au clavier avec Entrée ou Espace.
+
+`npm test` utilise le runner natif Node.js (Node 18 ou supérieur), sans envoi réel.
+Les tests isolent la logique des scripts Vue avec des dépendances simulées ; ils ne
+remplacent pas une vérification du rendu et de la navigation dans un navigateur.
+
+`npm run test:browser` démarre un serveur Vite local et utilise Chromium via
+Playwright (déjà déclaré dans les dépendances). Installer le navigateur au besoin
+avec `npx playwright install chromium`. Ce test vérifie les six cartes Activités
+dans les quatre langues, ainsi que les modales standard/VIP : focus initial,
+tabulation dans les deux sens, fermeture, retour au déclencheur, traduction
+réactive et rétablissement du défilement après navigation. Les requêtes externes
+sont bloquées pendant ce test.
+
+Les textes des cartes Activités sont dans `ui.activites.cards` des catalogues.
+Les nouvelles traductions, notamment en lingala, restent à faire relire par MAASH.
+Les hôpitaux utilisent un dialogue HTML natif (`showModal`) : l'arrière-plan est
+inerte pendant l'ouverture, et le focus est rendu à la carte à la fermeture.
+Ce comportement requiert un navigateur prenant en charge `<dialog>` et `showModal`.
