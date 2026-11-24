@@ -14,7 +14,9 @@ Design vert et blanc, responsive, en français.
 | `/services`     | Les 4 branches et les prestations A à J (Pensions, Communautaire, Santé, Spécialisée)  |
 | `/prosoc`       | Programme PROSOC, application Prosoc, rôles utilisateurs, protection des données       |
 | `/adhesion`     | Formules et tarifs (Solo à F6), documents, personnes à charge, modalités de paiement   |
+| `/activites`    | Les six activités (consultation, accompagnement, échanges, soutien…)                   |
 | `/contact`      | Adresse, téléphones, e-mails, horaires, couverture                                     |
+| `/recrutement`  | Postes ouverts et formulaire de candidature (Web3Forms, CV par WhatsApp)              |
 
 ## Lancer le projet
 
@@ -79,8 +81,8 @@ maash-site/
   `public/sitemap.xml`. Les URL du sitemap utilisent `https://maashprosoc.cd` : à ajuster si le
   domaine final diffère. Toute adresse inconnue affiche la page 404 personnalisée
   (`src/views/NotFoundView.vue`, en `noindex`).
-- **Application Android** : l'APK est servi depuis `public/apk/prod-prosoc-11.11.apk`
-  (URL publique : `/apk/prod-prosoc-11.11.apk`, clé `maash.apkUrl` dans les catalogues ;
+- **Application Android** : l'APK est servi depuis `public/apk/prosoc-prod-24.11.apk`
+  (URL publique : `/apk/prosoc-prod-24.11.apk`, clé `maash.apkUrl` dans les catalogues ;
   attribut `download`). Boutons : accueil (hero), page PROSOC, footer.
   Pour publier une nouvelle version : remplacer le fichier dans `public/apk/` (et le renvoyer
   sous le même nom si l'URL doit rester stable).

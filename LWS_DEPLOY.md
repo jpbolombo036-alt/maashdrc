@@ -35,11 +35,11 @@
 #    • 10 fichiers JS (chaque vue)
 #    • 1 fichier CSS global
 #    • 7 images hero
-#    • APK publié : prod-prosoc-11.11.apk (anciennes versions encore dans public/apk/)
+#    • APK publié : prosoc-prod-24.11.apk (seule version dans public/apk/)
 #    • robots.txt, sitemap.xml, logo.jpg
 #
 # 📝 Notes :
-#    • Le code APK pointe vers /apk/prod-prosoc-11.11.apk
+#    • Le code APK pointe vers /apk/prosoc-prod-24.11.apk
 #    • Apache : cache long uniquement pour les bundles JS/CSS avec empreinte.
 #      HTML, images et APK à nom stable sont revalidés (Cache-Control: no-cache).
 #    • Le serveur gère les URLs virtuelles (Vue Router)
@@ -96,7 +96,7 @@ effectuer aussi de vraies requêtes et consulter les journaux d'erreur LWS.
 curl -I https://maashprosoc.cd/
 curl -I https://maashprosoc.cd/presentation
 curl -I https://maashprosoc.cd/logo.jpg
-curl -I https://maashprosoc.cd/apk/prod-prosoc-11.11.apk
+curl -I https://maashprosoc.cd/apk/prosoc-prod-24.11.apk
 ```
 
 Vérifier le statut, `Cache-Control` et le type MIME de l'APK. Tester également
